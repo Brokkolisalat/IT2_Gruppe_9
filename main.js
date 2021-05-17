@@ -1,16 +1,16 @@
 function zeigeDaten(daten) {
 
     //Rückgabe der d3.selectAll - Methode in variable p speichern.(Alle Kindelemente von content, die p- Elemente sind.) Am Anfang gibt es noch keine.
-    let p = d3.select("#content").selectAll("p").data(daten);
+    let list = d3.select("#list").selectAll("ul").data(daten);
 
     //.enter().append(): Daten hinzufuegen falls es mehr Daten als Elemente im HTML gibt.
     //geschieht hier für jede Zeile von daten.
-    p.enter().append("p")
+    list.enter().append("li")
         .text(function (daten) {
-            return "Uhrzeit: " + daten.datum + " Wert: " + daten.werte["Person B"];
+            return "Uhrzeit: " + daten.datum + " Wert: " + daten.werte["Ampel rot"];
         });
     //.exit().remove(): Daten löschen, falls es mehr Elemente im HTML als Daten gibt.
-    p.exit().remove();
+    list.exit().remove();
 }
 
 function empfangeDaten(datenEmpfangen,error) {
@@ -23,7 +23,8 @@ function empfangeDaten(datenEmpfangen,error) {
 
 function aktualisiere() {
     //d3.json nutzen, um Link aufzurufen und das Ergebnis an die empfangeDaten- Methode zu übergeben.
-    d3.json("http://it2wi1.if-lab.de/rest/beispiel/Parameter/Person%20B/tag/1").then(function (data, error) {
+    //d3.json("http://it2wi1.if-lab.de/rest/beispiel/Parameter/Person%20B/tag/1").then(function (data, error) {
+    d3.json("http://it2wi1.if-lab.de/rest/ft_ablauf").then(function (data, error) {
         empfangeDaten(data, error)
     });
 }
