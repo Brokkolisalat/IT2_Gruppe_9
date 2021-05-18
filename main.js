@@ -1,43 +1,46 @@
-function showData(daten, sensor) {
+function showData(daten, filter) {
 
 	// Anzeige des Filters
-	let filter = d3.select('#filter');
-	filter.text("Filter: " + sensor);
+	let filter_element = d3.select('#filter');
+	valid_filter = isValidFilter(filter, daten);
+	if(valid_filter) filter_element.text("Filter: " + filter);
+	else filter_element.text("Filter ungültig: " + filter);
 
     //Rückgabe der d3.selectAll - Methode in variable p speichern.(Alle Kindelemente von content, die p- Elemente sind.) Am Anfang gibt es noch keine.
     var list = d3.select("#list").selectAll("ul").data(daten);
-
-	var valid_sensors = d3.keys(daten.werte);
     //.enter().append(): Daten hinzufuegen falls es mehr Daten als Elemente im HTML gibt.
     //geschieht hier für jede Zeile von daten.
     list.enter().append("li")
         .text(function (daten) {
-            return "Schlüssel: " + d3.keys(daten.werte) + "Wert: " + daten.werte[sensor] + "Uhrzeit: " + daten.datum;
+        	if(valid_filter)
+            return "Schlüssel: " + filter + "Wert: " + daten.werte[filter] + "Uhrzeit: " + daten.datum;
+            else
+            return "Schlüssel: " + d3.keys(daten.werte) + "Wert: " + daten.werte + "Uhrzeit: " + daten.datum;
         });
     //.exit().remove(): Daten löschen, falls es mehr Elemente im HTML als Daten gibt.
     list.exit().remove();
 }
 
-function callData(datenEmpfangen,error, sensor) {
-    if (error){ //|| !isValidSensor(sensor, datenEmpfangen)) {
+function callData(datenEmpfangen,error, filter) {
+    if (error) {
         console.log(error);
     } else {
-        showData(datenEmpfangen, sensor);
+        showData(datenEmpfangen, filter);
     }
 }
 
 // Einstiegspunkt
 function getData() {
-   var sensor = "Ampel rot"
+   var filter = "Ampel rot"
     d3.json("https://it2wi1.if-lab.de/rest/ft_ablauf").then(function (data, error) {
-        callData(data, error, sensor)
+        callData(data, error, filter)
     });
 }
 
-function isValidSensor(sensor, daten){
-	var valid_sensors = d3.keys(daten.werte);
-	for (i = 0; i < valid_sensors.length; i++) {
-		if(valid_sensors[i] == sensor) return true;
+function isValidFilter(filter, daten){
+	var valid_filters = d3.keys(daten["0"].werte);
+	for (i = 0; i < valid_filters.length; i++) {
+		if(valid_filters[i] == filter) return true;
 	}
 	return false;
 }
