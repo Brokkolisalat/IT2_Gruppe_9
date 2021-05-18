@@ -11,7 +11,7 @@ function showData(daten, sensor) {
     //geschieht hier für jede Zeile von daten.
     list.enter().append("li")
         .text(function (daten) {
-            return "Schlüssel: " + daten.werte.keys + "Wert: " + daten.werte + "Uhrzeit: " + daten.datum;
+            return "Schlüssel: " + d3.keys(daten.werte) + "Wert: " + daten.werte[sensor] + "Uhrzeit: " + daten.datum;
         });
     //.exit().remove(): Daten löschen, falls es mehr Elemente im HTML als Daten gibt.
     list.exit().remove();
