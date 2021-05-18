@@ -5,7 +5,7 @@ function showData(daten, sensor) {
 	filter.text("Filter: " + sensor);
 
     //Rückgabe der d3.selectAll - Methode in variable p speichern.(Alle Kindelemente von content, die p- Elemente sind.) Am Anfang gibt es noch keine.
-    let list = d3.select("#list").selectAll("ul").data(daten);
+    var list = d3.select("#list").selectAll("ul").data(daten);
 
     //.enter().append(): Daten hinzufuegen falls es mehr Daten als Elemente im HTML gibt.
     //geschieht hier für jede Zeile von daten.
@@ -27,14 +27,14 @@ function callData(datenEmpfangen,error, sensor) {
 
 // Einstiegspunkt
 function getData() {
-   let sensor = "Ampel rot"
+   var sensor = "Ampel rot"
     d3.json("https://it2wi1.if-lab.de/rest/ft_ablauf").then(function (data, error) {
         callData(data, error, sensor)
     });
 }
 
 function isValidSensor(sensor, daten){
-	let valid_sensors = d3.keys(daten.werte);
+	var valid_sensors = d3.keys(daten.werte);
 	for (i = 0; i < valid_sensors.length; i++) {
 		if(valid_sensors[i] == sensor) return true;
 	}
