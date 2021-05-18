@@ -62,7 +62,7 @@ function processInput()
     var parameters = location.search.substring(1).split("&");
 
     var temp = parameters[0].split("=");
-    l = unescape(temp[0]);
+    l = unescape(temp[1]);
     getData(l);
     //document.getElementById("sensor").innerHTML = l;   
 }
