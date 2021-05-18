@@ -2,27 +2,28 @@
 
 <html>
     <head>
-        <title>Einfache Anzeige der Daten</title>
+        <title>Auswahl Sensorik</title>
         <meta charset="utf-8" />
         <!-- einbinden von d3js -->
         <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
-        <script src="main.js"></script>
+        <script src="js/main.js"></script>
         <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet"/>
+        <link href="css/main.css" rel="stylesheet"/>
     </head>
 
     <body>
     <input type=button onClick="parent.location='auswahl.html'" value='Zurück'>
 		     <form action="sensorik.html">
-  <input type="hidden" name="sensor" value="Lichtschranke" />
-  <input type="submit" value="Sensor 1">
+  <input type="hidden" name="sensor" value="Sortierstrecke" />
+  <input type="submit" value="Lichtschranke">
 </form>
 		     <form action="sensorik.html">
-  <input type="hidden" name="sensor" value="2" />
-  <input type="submit" value="Sensor 2">
+  <input type="hidden" name="sensor" value="Taster 1" />
+  <input type="submit" value="Taster 1">
 </form>
 		     <form action="sensorik.html">
-  <input type="hidden" name="sensor" value="3" />
-  <input type="submit" value="Sensor 3">
+  <input type="hidden" name="sensor" value="Taster 2" />
+  <input type="submit" value="Taster 2">
 </form>
     </body>
 </html>

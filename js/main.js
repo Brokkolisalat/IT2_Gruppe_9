@@ -92,18 +92,27 @@ function callData(datenEmpfangen,error, filter) {
 
 // Einstiegspunkt
 function getData(sensor) {
-	var filter = [];
-	if(sensor == "Lichtschranke"){ 
-		filter.push("S-Lichtschranke Eingang");
-		filter.push("S-Lichtschranke nach Farbsensor");
-		filter.push("S-Lichtschranke weiss");
-		filter.push("S-Lichtschranke rot");
-		filter.push("S-Lichtschranke blau");
-	}else{ 
-		filter.push("Ampel roat");}
+	var filter = getFilterBySensor(sensor);
     d3.json("https://it2wi1.if-lab.de/rest/ft_ablauf").then(function (data, error) {
         callData(data, error, filter)
     });
+}
+
+function getFilterBySensor(sensor){
+	let filter = [];
+	switch (sensor) {
+		case "Sortierstrecke": 
+			filter.push("S-Lichtschranke Eingang");
+			filter.push("S-Motor Eingang");
+			filter.push("S-Lichtschranke nach Farbsensor");
+			filter.push("S-Lichtschranke weiss");
+			filter.push("S-Lichtschranke rot");
+			filter.push("S-Lichtschranke blau");
+			break;
+		default:
+			break;
+	}
+	return filter;
 }
 
 function isValidFilter(filter, daten){

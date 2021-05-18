@@ -6,11 +6,12 @@
         <meta charset="utf-8" />
         <!-- einbinden von d3js -->
         <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
-        <script src="main.js"></script>
+        <script src="js/main.js"></script>
         <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet"/>
+        <link href="css/main.css" rel="stylesheet"/>
     </head>
 
-    <body>
+    <body onload="processInput()">
         <!-- nicht unbedingt notwendig, aber hier Einstiegspunkt -->
         <input type=button onClick="parent.location='sensorik_auswahl.html'" value='Zurück'>
          <button onclick="getData()">Zeige Daten</button>
@@ -21,5 +22,4 @@
         </ul>
         </div>
     </body>
-    <script> processInput();</script>
 </html>
