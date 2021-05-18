@@ -56,10 +56,13 @@ function callData(datenEmpfangen,error, filter) {
 // Einstiegspunkt
 function getData(sensor) {
 	var filter = [];
-	if(sensor == 1){ 
-		filter.push("Ampel rot");
-		filter.push("Ampel gelb");}
-	else{ 
+	if(sensor == "Lichtschranke"){ 
+		filter.push("S-Lichtschranke Eingang");
+		filter.push("S-Lichtschranke nach Farbsensor");
+		filter.push("S-Lichtschranke weiss");
+		filter.push("S-Lichtschranke rot");
+		filter.push("S-Lichtschranke blau");
+	}else{ 
 		filter.push("Ampel roat");}
     d3.json("https://it2wi1.if-lab.de/rest/ft_ablauf").then(function (data, error) {
         callData(data, error, filter)
