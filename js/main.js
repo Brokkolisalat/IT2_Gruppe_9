@@ -103,12 +103,22 @@ function getFilterBySensor(sensor){
 	switch (sensor) {
 		case "Sortierstrecke": 
 			filter.push("S-Lichtschranke Eingang");
-			filter.push("S-Motor Eingang");
+			filter.push("S-Motor Foerderband");
 			filter.push("S-Lichtschranke nach Farbsensor");
 			filter.push("S-Lichtschranke weiss");
 			filter.push("S-Lichtschranke rot");
 			filter.push("S-Lichtschranke blau");
 			break;
+		case "Bearbeitungsstation":
+			filter.push("B-Referenzschalter Drehkranz (Pos. Sauger)");
+			filter.push("B-Referenzschalter Drehkranz (Pos. Foerderband)");
+			filter.push("B-Lichtschranke Ende Foerderband");
+			filter.push("B-Referenzschalter Drehkranz (Pos. Saege)");
+			filter.push("B-Referenzschalter Sauger (Pos. Drehkranz)");
+			filter.push("B-Referenzschalter Ofenschieber Innen");
+			filter.push("B-Referenzschalter Ofenschieber Aussen");
+			filter.push("B-Referenzschalter Sauger (Pos. Brennofen)");
+			filter.push("B-Lichtschranke Brennofen");
 		default:
 			break;
 	}
