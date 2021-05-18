@@ -7,7 +7,7 @@ function showData(daten, filter) {
 	for(let f of filter){
 		valid_filter = isValidFilter(f, daten);
 		if(valid_filter) 
-		filter_text += f;
+		filter_text += f + "; ";
 		else{
 		filter_text = "Filter ungültig: " + f;
 		break;
