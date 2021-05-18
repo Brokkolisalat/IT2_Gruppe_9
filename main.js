@@ -40,8 +40,9 @@ function callData(datenEmpfangen,error, filter) {
 }
 
 // Einstiegspunkt
-function getData() {
-   var filter = "Ampel roat"
+function getData(sensor) {
+	if(sensor == 1) filter = "Ampel rot";
+	else filter = "Ampel roat";
     d3.json("https://it2wi1.if-lab.de/rest/ft_ablauf").then(function (data, error) {
         callData(data, error, filter)
     });
@@ -62,6 +63,6 @@ function processInput()
 
     var temp = parameters[0].split("=");
     l = unescape(temp[0]);
-    document.getElementById("sensor").innerHTML = l;
-    
+    getData(l);
+    //document.getElementById("sensor").innerHTML = l;   
 }
