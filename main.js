@@ -20,7 +20,9 @@ function showData(daten, filter) {
 	        daten.forEach(function(d, i){
 	            // now we add another data object value, a calculated value.
 	            // here we are making strings into numbers using type coercion
-	            myArray.push([d.datum, filter[i], d.werte[filter[i]]]);
+	            for(let f in filter){
+	            	myArray.push([d.datum, filter[f], d.werte[filter[f]]]);
+	            }
 	        });
 		
 		var table = d3.select("#list").append("table");
