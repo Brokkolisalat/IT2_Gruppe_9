@@ -15,20 +15,55 @@ function showData(daten, filter) {
 	}
 	filter_element.text(filter_text);
 	if(valid_filter){
-    //Rückgabe der d3.selectAll - Methode in variable p speichern.(Alle Kindelemente von content, die p- Elemente sind.) Am Anfang gibt es noch keine.
-    var list = d3.select("#list").selectAll("ul").data(daten);
-    //.enter().append(): Daten hinzufuegen falls es mehr Daten als Elemente im HTML gibt.
-    //geschieht hier für jede Zeile von daten.
-    list.enter().append("li")
-        .text(function (daten) {
-        	var text = "Uhrzeit: " + daten.datum;
-        	for(i = 0; i < filter.length; i++){
-        		text +=", Schlüssel " + i + ": " + filter[i] + ", Wert: " + daten.werte[filter[i]];
-        	}
-            return text;
-        });
-    //.exit().remove(): Daten löschen, falls es mehr Elemente im HTML als Daten gibt.
-    list.exit().remove();
+		
+		var myArray = [];
+	        daten.forEach(function(d, i){
+	            // now we add another data object value, a calculated value.
+	            // here we are making strings into numbers using type coercion
+	            myArray.push(d.datum, filter[i], d.werte[filter[i]]);
+	        });
+		
+		var table = d3.select("#list").append("table");
+	    var header = table.append("thead").append("tr");
+	    header
+	            .selectAll("th")
+	            .data(["Zeitpunkt", "Schlüssel", "Wert"])
+	            .enter()
+	            .append("th")
+	            .text(function(d) { return d; });
+	    var tablebody = table.append("tbody");
+	    rows = tablebody
+	            .selectAll("tr")
+	            .data(myArray)
+	            .enter()
+	            .append("tr");
+	    // We built the rows using the nested array - now each row has its own array.
+	    cells = rows.selectAll("td")
+	        // each row has data associated; we get it and enter it for the cells.
+	            .data(function(d) {
+	                console.log(d);
+	                return d;
+	            })
+	            .enter()
+	            .append("td")
+	            .text(function(d) {
+	                return d;
+	            });
+		
+	    /*//Rückgabe der d3.selectAll - Methode in variable p speichern.(Alle Kindelemente von content, die p- Elemente sind.) Am Anfang gibt es noch keine.
+	    var list = d3.select("#list").selectAll("ul").data(daten);
+	    //.enter().append(): Daten hinzufuegen falls es mehr Daten als Elemente im HTML gibt.
+	    //geschieht hier für jede Zeile von daten.
+	    list.enter().append("li")
+	        .text(function (daten) {
+	        	var text = "Uhrzeit: " + daten.datum;
+	        	for(i = 0; i < filter.length; i++){
+	        		text +=", Schlüssel " + i + ": " + filter[i] + ", Wert: " + daten.werte[filter[i]];
+	        	}
+	            return text;
+	        });
+	    //.exit().remove(): Daten löschen, falls es mehr Elemente im HTML als Daten gibt.
+	    list.exit().remove();*/
     }
     else{
     
