@@ -4,12 +4,12 @@ function showData(daten, filter) {
 	let filter_element = d3.select('#filter');
 	var valid_filter = true;
 	var filter_text = "Filter: ";
-	for(i = 0; i < filter.length; i++){
-		valid_filter = isValidFilter(filter[i], daten);
+	for(let f in filter){
+		valid_filter = isValidFilter(f, daten);
 		if(valid_filter) 
-		filter_text += filter[i];
+		filter_text += f;
 		else{
-		filter_text = "Filter ungültig: " + filter[i];
+		filter_text = "Filter ungültig: " + f;
 		break;
 		}
 	}
