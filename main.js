@@ -26,15 +26,15 @@ function callData(datenEmpfangen,error, sensor) {
 }
 
 // Einstiegspunkt
-function getData(sensor) {
-   sensor = "Ampel rot"
+function getData() {
+   let sensor = "Ampel rot"
     d3.json("https://it2wi1.if-lab.de/rest/ft_ablauf").then(function (data, error) {
         callData(data, error, sensor)
     });
 }
 
 function isValidSensor(sensor, daten){
-	valid_sensors = d3.keys(daten.werte);
+	let valid_sensors = d3.keys(daten.werte);
 	for (i = 0; i < valid_sensors.length; i++) {
 		if(valid_sensors[i] == sensor) return true;
 	}
