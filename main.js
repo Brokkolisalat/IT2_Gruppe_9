@@ -24,7 +24,7 @@ function empfangeDaten(datenEmpfangen,error) {
 function aktualisiere() {
     //d3.json nutzen, um Link aufzurufen und das Ergebnis an die empfangeDaten- Methode zu übergeben.
     //d3.json("http://it2wi1.if-lab.de/rest/beispiel/Parameter/Person%20B/tag/1").then(function (data, error) {
-    d3.json("http://it2wi1.if-lab.de/rest/ft_ablauf").then(function (data, error) {
+    d3.json("https://it2wi1.if-lab.de/rest/ft_ablauf").then(function (data, error) {
         empfangeDaten(data, error)
     });
 }
