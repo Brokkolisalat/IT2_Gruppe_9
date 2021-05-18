@@ -4,7 +4,7 @@ function showData(daten, filter) {
 	let filter_element = d3.select('#filter');
 	var valid_filter = true;
 	var filter_text = "Filter: ";
-	for(let f in filter){
+	for(let f of filter){
 		valid_filter = isValidFilter(f, daten);
 		if(valid_filter) 
 		filter_text += f;
