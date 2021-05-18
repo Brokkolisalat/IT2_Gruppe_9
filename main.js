@@ -7,6 +7,7 @@ function showData(daten, sensor) {
     //Rückgabe der d3.selectAll - Methode in variable p speichern.(Alle Kindelemente von content, die p- Elemente sind.) Am Anfang gibt es noch keine.
     var list = d3.select("#list").selectAll("ul").data(daten);
 
+	var valid_sensors = d3.keys(daten.werte);
     //.enter().append(): Daten hinzufuegen falls es mehr Daten als Elemente im HTML gibt.
     //geschieht hier für jede Zeile von daten.
     list.enter().append("li")
@@ -18,7 +19,7 @@ function showData(daten, sensor) {
 }
 
 function callData(datenEmpfangen,error, sensor) {
-    if (error || !isValidSensor(sensor, datenEmpfangen)) {
+    if (error){ //|| !isValidSensor(sensor, datenEmpfangen)) {
         console.log(error);
     } else {
         showData(datenEmpfangen, sensor);
