@@ -11,13 +11,13 @@
     </head>
 
     <body>
-		<div id="content">
+        <!-- nicht unbedingt notwendig, aber hier Einstiegspunkt -->
+        <input type=button onClick="parent.location='auswahl.html'" value='Zurück'>
+         <button onclick="aktualisiere()">Zeige Daten</button>
+        <div id="content">
         Einfache Anzeige der Daten über folgenden Button
         <ul id="list">
         </ul>
         </div>
-        <!-- nicht unbedingt notwendig, aber hier Einstiegspunkt -->
-        <button onclick="aktualisiere()">Zeige Daten</button>
-        <input type=button onClick="parent.location='index.html'" value='Diagramm'>
     </body>
 </html>
