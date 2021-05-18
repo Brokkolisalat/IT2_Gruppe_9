@@ -18,7 +18,7 @@ function showData(daten, sensor) {
 }
 
 function callData(datenEmpfangen,error, sensor) {
-    if (error || !isValidSensor(sensor, daten)) {
+    if (error || !isValidSensor(sensor, datenEmpfangen)) {
         console.log(error);
     } else {
         showData(datenEmpfangen, sensor);
