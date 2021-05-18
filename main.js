@@ -21,7 +21,7 @@ function callData(datenEmpfangen,error, sensor) {
     if (error) {
         console.log(error);
     } else {
-        zeigeDaten(datenEmpfangen, sensor);
+        showData(datenEmpfangen, sensor);
     }
 }
 
@@ -29,7 +29,7 @@ function callData(datenEmpfangen,error, sensor) {
 function getData(sensor) {
    sensor = "Ampel rot"
     d3.json("https://it2wi1.if-lab.de/rest/ft_ablauf").then(function (data, error) {
-        empfangeDaten(data, error, sensor)
+        callData(data, error, sensor)
     });
 }
 
