@@ -54,3 +54,14 @@ function isValidFilter(filter, daten){
 	}
 	return false;
 }
+
+// Parameter einlesen
+function processInput()
+{
+    var parameters = location.search.substring(1).split("&");
+
+    var temp = parameters[0].split("=");
+    l = unescape(temp[0]);
+    document.getElementById("sensor").innerHTML = l;
+    
+}
