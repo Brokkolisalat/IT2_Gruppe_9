@@ -24,9 +24,15 @@ body {
 }
 
 input {
+	margin: auto;
+	text-align: center;
+	display: inline-block;
 	background-color: #314151;
 }
 
 button {
+	margin: auto;
+	text-align: center;
+	display: inline-block;
 	background-color: #314151;
 }
