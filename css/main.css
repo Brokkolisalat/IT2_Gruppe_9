@@ -17,6 +17,8 @@
 }
 
 body {
+	margin: auto;
+	text-align: center;
 	display: inline-block;
 	background-color: #717e87;
 }
