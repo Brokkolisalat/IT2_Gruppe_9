@@ -132,6 +132,7 @@ function getFilterBySensor(sensor){
 			filter.push("B-Motor Sauger zum Ofen");
 			filter.push("B-Motor Sauger zum Drehkranz");
 			filter.push("B-Leuchte Ofen");
+			break;
 		case "Vakuum-Sauggreifer": 
 			filter.push("V-vertikal");
 			filter.push("V-drehen");
@@ -153,6 +154,7 @@ function getFilterBySensor(sensor){
 			filter.push("Ampel orange");
 			filter.push("Ampel gruen");
 			filter.push("Ampel weiss");
+			break;
 		default:
 			break;
 	}
