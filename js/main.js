@@ -101,13 +101,17 @@ function getData(sensor) {
 function getFilterBySensor(sensor){
 	let filter = [];
 	switch (sensor) {
-		case "Sortierstrecke": 
-			filter.push("S-Lichtschranke Eingang");
-			filter.push("S-Motor Foerderband");
-			filter.push("S-Lichtschranke nach Farbsensor");
-			filter.push("S-Lichtschranke weiss");
-			filter.push("S-Lichtschranke rot");
-			filter.push("S-Lichtschranke blau");
+		case "Hochregallager": 
+			filter.push("H-vertikal");
+			filter.push("H-horizontal");
+			filter.push("Umsetzer Endanschlag 1 (3B1)");
+			filter.push("Umsetzer Endanschlag 2 (3B2)");
+			filter.push("Referenztaster horizontal");
+			filter.push("Lichtschranke innen");
+			filter.push("Lichtschranke aussen");
+			filter.push("Referenztaster vertikal");
+			filter.push("Referenztaster Ausleger vorne");
+			filter.push("Referenztaster Ausleger hinten");
 			break;
 		case "Bearbeitungsstation":
 			filter.push("B-Referenzschalter Drehkranz (Pos. Sauger)");
@@ -119,6 +123,36 @@ function getFilterBySensor(sensor){
 			filter.push("B-Referenzschalter Ofenschieber Aussen");
 			filter.push("B-Referenzschalter Sauger (Pos. Brennofen)");
 			filter.push("B-Lichtschranke Brennofen");
+			filter.push("B-Motor Drehkranz im Uhrzeigersinn");
+			filter.push("B-Motor Drehkranz gegen Uhrzeigersinn");
+			filter.push("B-Motor Foerderband vorwaerts");
+			filter.push("B-Motor Saege");
+			filter.push("B-Motor Ofenschieber Einfahren");
+			filter.push("B-Motor Ofenschieber Ausfahren");
+			filter.push("B-Motor Sauger zum Ofen");
+			filter.push("B-Motor Sauger zum Drehkranz");
+			filter.push("B-Leuchte Ofen");
+		case "Vakuum-Sauggreifer": 
+			filter.push("V-vertikal");
+			filter.push("V-drehen");
+			filter.push("V-horizontal");
+			filter.push("V-Referenzschalter vertikal");
+			filter.push("V-Referenzschalter horizontal");
+			filter.push("V-Referenzschalter drehen");
+			break;
+		case "Sortierstrecke": 
+			filter.push("S-Lichtschranke Eingang");
+			filter.push("S-Lichtschranke nach Farbsensor");
+			filter.push("S-Lichtschranke weiss");
+			filter.push("S-Lichtschranke rot");
+			filter.push("S-Lichtschranke blau");
+			filter.push("S-Motor Foerderband");
+			break;
+		case "Ampel":
+			filter.push("Ampel rot");
+			filter.push("Ampel orange");
+			filter.push("Ampel gruen");
+			filter.push("Ampel weiss");
 		default:
 			break;
 	}
