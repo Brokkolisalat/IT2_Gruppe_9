@@ -1,0 +1,110 @@
+body {
+  background-color: #717e87;
+  margin: 50px;
+  font-family: 'Ubuntu', sans-serif;
+  background-size: 100% 110%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+  margin: 0;
+  padding: 0;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #314151;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #314151;
+}
+
+.searchTerm:focus {
+  color: #314151;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #314151;
+  background: #314151;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.login-header {
+  max-width: 500px;
+  color: #fff;
+  text-align: center;
+  font-size: 100%;
+  margin: auto;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 20px;
+
+  padding: 10px;
+}
+
+.grid-container>div {
+  background-color: #314151;
+  text-align: center;
+
+  font-size: 30px;
+  color: white;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 15px;
+
+}
+
+.grid-child {
+  max-width: 280px;
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Ubuntu', sans-serif;
+  margin: 3em 2em;
+  border: 1px #314151;
+  background-color: #314151;
+  color: white;
+  position: relative;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 16px;
+  text-align: center;
+}
+
+/*Media Querie*/
+
+@media only screen and (min-width : 150px) and (max-width : 530px) {
+  .login-form h3 {
+    text-align: center;
+    margin: 0;
+  }
+
+  .login-button {
+    margin-bottom: 10px;
+    text-align: center;
+  }
+}
