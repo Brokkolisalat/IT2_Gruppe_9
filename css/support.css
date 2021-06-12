@@ -1,0 +1,101 @@
+body {
+    background-color: #717e87;
+    font-family: 'Ubuntu', sans-serif;
+    background-size: 100% 110%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+    margin: 0;
+    padding: 0;
+}
+
+.login {
+    margin: 100px;
+    background-color: #717e87;
+}
+
+.login-header {
+    color: #fff;
+    text-align: left;
+}
+
+.login-form {
+    color: #fff;
+    text-align: left;
+}
+
+.login-form h3 {
+    text-align: left;
+    color: #fff;
+}
+
+.login-form {
+    box-sizing: border-box;
+    padding-top: 15px;
+    padding-bottom: 10%;
+    margin: auto;
+    text-align: left;
+}
+
+.login input[type="text"] {
+    text-align: left;
+    max-width: 400px;
+    width: 80%;
+    line-height: 3em;
+    font-family: 'Ubuntu', sans-serif;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: 2px solid #f2f2f2;
+    outline: none;
+    padding-left: 10px;
+}
+
+.login textarea {
+    text-align: left;
+    max-width: 1000px;
+    width: 80%;
+    height: 15em;
+    font-family: 'Ubuntu', sans-serif;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: 2px solid #f2f2f2;
+    outline: none;
+    padding-left: 10px;
+    word-break: break-word;
+}
+
+.login-form input[type="button"] {
+    max-width: 150px;
+    min-width: 50px;
+    width: 100%;
+    line-height: 3em;
+    font-family: 'Ubuntu', sans-serif;
+    margin-top: 20px;
+    border: 1px solid #314151;
+    border-radius: 20px;
+    background-color: #314151;
+    color: white;
+    text-transform: uppercase;
+    position: relative;
+    font-family: 'Ubuntu', sans-serif;
+    cursor: pointer;
+}
+
+/*Media Querie*/
+@media only screen and (min-width : 150px) and (max-width : 530px) {
+    .login-form {
+        text-align: left;
+        margin: 0;
+    }
+
+    .login-button {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+}

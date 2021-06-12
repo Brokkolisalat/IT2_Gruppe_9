@@ -1,0 +1,17 @@
+svg {
+    height: 3em;
+    width: 3em;
+}
+.logout{
+    float: left;
+    margin-left: 50px;
+    Padding: 50px;
+}
+.support{
+    float: right;
+    margin-right: 50px;
+    Padding: 50px;
+}
+path {
+    fill:#314151;
+}
