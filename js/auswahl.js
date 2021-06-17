@@ -3,10 +3,10 @@ $(function () {
     $("#footer").load("footer.html");
 });
 
-var sensor_loc = 'auswahl_sensorik.html';
-var wege_loc = 'auswahl_wege.html';
-var anlage_sensor_loc = 'auswahl_sensorik_darstellung.html';
-var anlage_wege_loc = 'wege.html';
+var sensor_loc = "auswahl_sensorik.html";
+var wege_loc = "auswahl_wege.html";
+var anlage_sensor_loc = "auswahl_sensorik_darstellung.html";
+var anlage_wege_loc = "wege.html";
 
 document.getElementById("sensor").onclick = function (){
     location.href = sensor_loc;
