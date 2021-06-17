@@ -104,8 +104,6 @@ function getFilterBySensor(sensor){
 		case "Hochregallager": 
 			filter.push("H-vertikal");
 			filter.push("H-horizontal");
-			filter.push("Umsetzer Endanschlag 1 (3B1)");
-			filter.push("Umsetzer Endanschlag 2 (3B2)");
 			filter.push("Referenztaster horizontal");
 			filter.push("Lichtschranke innen");
 			filter.push("Lichtschranke aussen");
@@ -148,6 +146,10 @@ function getFilterBySensor(sensor){
 			filter.push("S-Lichtschranke rot");
 			filter.push("S-Lichtschranke blau");
 			filter.push("S-Motor Foerderband");
+			break;
+		case "Umsetzer":
+			filter.push("Umsetzer Endanschlag 1 (3B1)");
+			filter.push("Umsetzer Endanschlag 2 (3B2)");
 			break;
 		case "Ampel":
 			filter.push("Ampel rot");

@@ -9,6 +9,6 @@ form.addEventListener("submit", function (event) {
     if (username === 'admin' && password === 'admin') {
         location.href = 'Front_page.html';
     } else {
-        alert("Username or Password is incorrect!");
+        alert("Benutzername oder Passwort sind falsch!");
     }
 });
