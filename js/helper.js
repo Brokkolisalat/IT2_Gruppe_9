@@ -6,7 +6,6 @@ var curr_anlage = -1;
 
 function init(){
 	curr_anlage = -1;
-
 }
 
 function setCurrentAnlage(id){
@@ -22,9 +21,7 @@ function getCurrAnlageText(){
 	return anlage_name[curr_anlage];	
 }
 
-
 function showData(daten, filter) {
-
 	// Anzeige des Filters
 	let filter_element = d3.select('#filter');
 	var valid_filter = true;
@@ -116,16 +113,16 @@ function callData(datenEmpfangen,error, filter) {
 }
 
 // Einstiegspunkt
-function getData(sensor) {
-	var filter = getFilterBySensor(sensor);
+function getData(anlage) {
+	var filter = getFilterByanlage(anlage);
     d3.json("https://it2wi1.if-lab.de/rest/ft_ablauf").then(function (data, error) {
         callData(data, error, filter)
     });
 }
 
-function getFilterBySensor(sensor){
+function getFilterBySensor(anlage){
 	let filter = [];
-	switch (sensor) {
+	switch (anlage) {
 		case "Hochregallager": 
 			filter.push("H-vertikal");
 			filter.push("H-horizontal");
