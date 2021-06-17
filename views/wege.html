@@ -3,35 +3,32 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Front_page</title>
+    <title>Sensorik Hochregallager</title>
     <link rel='stylesheet' href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
     <link rel="stylesheet" href="../css/option.css">
     <link rel="stylesheet" href="../css/general.css">
- <!-- partial -->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
-    <script src="../js/helper.js"></script>
-    <script src="../js/auswahl.js"></script>
 </head>
 
-<body onload="init()">
-	
+<body>
     <div id="header"></div>
     <div id="body">
+        <!-- partial:index.partial.html -->
         <link href='https://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
+
         <div class="login">
             <div class="login-header">
-                <h1>Was wollen Sie anzeigen lassen?</h1>
+                <h1>Wege</h1>
             </div>
             <div class="grid-container">
-                <button id="sensor" class="grid-child">Sensoren und Aktoren<br> der Anlagemodule</button>
-                <button id="wege" class="grid-child">Zurückgelegte Wegstrecke<br> der Anlagemodule</button>
             </div>
         </div>
-         
     </div>
     <div id="footer"></div>
-  
+    <!-- partial -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+    <script src="../js/auswahl.js"></script>
+    <script src="../js/infor-sensor.js"></script>
 </body>
 
 </html>

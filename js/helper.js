@@ -1,3 +1,28 @@
+// Hier sollen die Anlagetexte und Nummern zentral gemapped werden
+
+var anlage_name = ["Hochregallager", "Bearbeitungsstation", "Vakuum-Sauggreifer", "Sortierstrecke", "Umsetzer", "Ampel"];
+
+var curr_anlage = -1;
+
+function init(){
+	curr_anlage = -1;
+
+}
+
+function setCurrentAnlage(id){
+	if(id >= anlage_name.length) return;
+	curr_anlage = id;
+}
+
+function getCurrentAnlage(){
+	return curr_anlage;
+}
+
+function getCurrAnlageText(){
+	return anlage_name[curr_anlage];	
+}
+
+
 function showData(daten, filter) {
 
 	// Anzeige des Filters
