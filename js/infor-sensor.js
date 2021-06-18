@@ -3,9 +3,9 @@ $(function () {
     $("#footer").load("footer.html");
 });
 
-document.getElementById("diagram-1").onclick = function (){
-    location.href = 'Hochregallager_Sensorik.html';
+document.getElementById("diagram").onclick = function (){
+    location.href = 'diagram.html';
 }
-document.getElementById("history-1").onclick = function (){
-    location.href = 'Hochregallager_Sensorik.html';
+document.getElementById("history").onclick = function (){
+    location.href = 'history.html';
 }

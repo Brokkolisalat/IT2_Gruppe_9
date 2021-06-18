@@ -11,7 +11,7 @@
 
 <body>
     <div id="header"></div>
-    <div id="body">
+    <div id="body" onload="loadDiagram()">
         <!-- partial:index.partial.html -->
         <link href='https://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
 
@@ -20,7 +20,9 @@
                 <h1>Zusammenfassung</h1>
             </div>
             <div class="grid-container">
-
+			<li>
+				<ul></ul>
+			</li>
             </div>
         </div>
     </div>
@@ -28,7 +30,8 @@
     <!-- partial -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
-    <script src="../js/infor-sensor.js"></script>
+    <script src="../js/helper.js"></script>
+    <script src="../js/diagram.js"></script>
 </body>
 
 </html>

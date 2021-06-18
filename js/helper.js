@@ -21,6 +21,7 @@ function getCurrAnlageText(){
 	return anlage_name[curr_anlage];	
 }
 
+// Datenfunktionen
 function showData(daten, filter) {
 	// Anzeige des Filters
 	let filter_element = d3.select('#filter');
@@ -114,13 +115,13 @@ function callData(datenEmpfangen,error, filter) {
 
 // Einstiegspunkt
 function getData(anlage) {
-	var filter = getFilterByanlage(anlage);
+	var filter = getFilterByAnlage(anlage);
     d3.json("https://it2wi1.if-lab.de/rest/ft_ablauf").then(function (data, error) {
         callData(data, error, filter)
     });
 }
 
-function getFilterBySensor(anlage){
+function getFilterByAnlage(anlage){
 	let filter = [];
 	switch (anlage) {
 		case "Hochregallager": 
