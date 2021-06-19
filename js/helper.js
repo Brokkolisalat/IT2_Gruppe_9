@@ -22,7 +22,7 @@ function getCurrAnlageText(){
 }
 
 // Datenfunktionen
-function showData(daten, filter) {
+function showTable(daten, filter) {
 	// Anzeige des Filters
 	let filter_element = d3.select('#filter');
 	var valid_filter = true;
@@ -76,7 +76,7 @@ function showData(daten, filter) {
 	            });
 		
 	    /*//Rückgabe der d3.selectAll - Methode in variable p speichern.(Alle Kindelemente von content, die p- Elemente sind.) Am Anfang gibt es noch keine.
-	    var list = d3.select("#list").selectAll("ul").data(daten);
+	    var list = d3.select("#grid-container").selectAll("ul").data(daten);
 	    //.enter().append(): Daten hinzufuegen falls es mehr Daten als Elemente im HTML gibt.
 	    //geschieht hier für jede Zeile von daten.
 	    list.enter().append("li")
@@ -92,8 +92,8 @@ function showData(daten, filter) {
     }
     else{
     
-    d3.select('#valid_filters').text( " Gültige Filter: ");
-    d3.select("#list").selectAll("ul").data(d3.keys(daten["0"].werte)).enter().append("li")
+   // d3.select('#valid_filters').text( " Gültige Filter: ");
+    d3.select("#grid-containers").selectAll("ul").data(d3.keys(daten["0"].werte)).enter().append("li")
         .text(function (daten) {
             return daten;
         });
@@ -109,7 +109,7 @@ function callData(datenEmpfangen,error, filter) {
     if (error) {
         console.log(error);
     } else {
-        showData(datenEmpfangen, filter);
+        showTable(datenEmpfangen, filter);
     }
 }
 
