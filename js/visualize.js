@@ -18,6 +18,7 @@ function visualizeHistory(){
 	var anlage = getCurrentAnlageText();
 	d3.select("#head_text").text('Historie ' + anlage);
 	var data = getData(anlage, dummy_von, dummy_bis);
+	displayTable(data);
 }
 
 function visualizeWege(){
@@ -89,4 +90,53 @@ function displayDiagram(input){
 	      .attr("height", function(d) { return height - y(d.length); })
 	      .style("fill", "#69b3a2")
 
+}
+
+
+
+function displayTable(daten) {
+	var myArray = daten;
+	
+	var table = d3.select("#grid-container").append("table");
+    var header = table.append("thead").append("tr");
+    header
+            .selectAll("th")
+            .data(["Zeitpunkt", "Schlüssel", "Wert"])
+            .enter()
+            .append("th")
+            .text(function(d) { return d; });
+    var tablebody = table.append("tbody");
+    rows = tablebody
+            .selectAll("tr")
+            .data(myArray)
+            .enter()
+            .append("tr");
+    // We built the rows using the nested array - now each row has its own array.
+    cells = rows.selectAll("td")
+        // each row has data associated; we get it and enter it for the cells.
+            .data(function(d) {
+                console.log(d);
+                return d;
+            })
+            .enter()
+            .append("td")
+            .text(function(d) {
+                return d;
+            });
+	/*
+    //Rückgabe der d3.selectAll - Methode in variable p speichern.(Alle Kindelemente von content, die p- Elemente sind.) Am Anfang gibt es noch keine.
+    var list = d3.select("#grid-container").selectAll("ul").data(daten);
+    //.enter().append(): Daten hinzufuegen falls es mehr Daten als Elemente im HTML gibt.
+    //geschieht hier für jede Zeile von daten.
+    list.enter().append("li")
+        .text(function (daten) {
+        	var text = "Uhrzeit: " + daten.datum;
+        	for(i = 0; i < filter.length; i++){
+        		text +=", Schlüssel " + i + ": " + filter[i] + ", Wert: " + daten.werte[filter[i]];
+        	}
+            return text;
+        });
+    //.exit().remove(): Daten löschen, falls es mehr Elemente im HTML als Daten gibt.
+    list.exit().remove();*/
+    
 }
