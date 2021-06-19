@@ -17,13 +17,13 @@ function visualizeDiagram(){
 function visualizeHistory(){
 	var anlage = getCurrentAnlageText();
 	d3.select("#head_text").text('Historie ' + anlage);
-	getData(anlage, dummy_von, dummy_bis);
+	var data = getData(anlage, dummy_von, dummy_bis);
 }
 
 function visualizeWege(){
 	var anlage = getCurrentAnlageText();
 	d3.select("#head_text").text('Zurückgelegte Wegstrecke ' + anlage);
-	getData(anlage, dummy_von, dummy_bis);
+	var data = getData(anlage, dummy_von, dummy_bis);
 }
 
 
