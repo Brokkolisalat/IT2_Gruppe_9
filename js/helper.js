@@ -25,19 +25,20 @@ function getCurrentAnlageText(){
 // Datenfunktionen
 function showTable(daten, filter) {
 	// Anzeige des Filters
-	let filter_element = d3.select('#filter');
+	//let filter_element = d3.select('#filter');
 	var valid_filter = true;
-	var filter_text = "Filter: ";
+	//var filter_text = "Filter: ";
 	for(let f of filter){
 		valid_filter = isValidFilter(f, daten);
-		if(valid_filter) 
-		filter_text += f + "; ";
-		else{
-		filter_text = "Filter ungültig: " + f;
+		if(!valid_filter) {
+		//filter_text += f + "; ";
+		//else{
+		//filter_text = "Filter ungültig: " + f;
+		console.log("Filter ungültig: " + f);
 		break;
 		}
 	}
-	filter_element.text(filter_text);
+	//filter_element.text(filter_text);
 	if(valid_filter){
 		
 		var myArray = [];
