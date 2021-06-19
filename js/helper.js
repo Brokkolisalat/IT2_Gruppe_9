@@ -29,7 +29,6 @@ function getData(anlage, von_datum, bis_datum) {
     d3.json("https://it2wi1.if-lab.de/rest/ft_ablauf").then(function (data, error) {
         return callData(data, error, filter, von_datum, bis_datum)
     });
-	return null;
 }
 
 /* D3-Aufruffunktion */
