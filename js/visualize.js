@@ -37,7 +37,7 @@ function displayDiagram(input){
 	    height = 400 - margin.top - margin.bottom;
 	
 	// append the svg object to the body of the page
-	var svg = d3.select("#grid-container")
+	var svg = d3.select("#diagram")
 	  .append("svg")
 	    .attr("width", width + margin.left + margin.right)
 	    .attr("height", height + margin.top + margin.bottom)
@@ -97,7 +97,7 @@ function displayDiagram(input){
 function displayTable(daten) {
 	var myArray = daten;
 	
-	var table = d3.select("#grid-container").append("table");
+	var table = d3.select("#table").append("table");
     var header = table.append("thead").append("tr");
     header
             .selectAll("th")
