@@ -13,11 +13,13 @@ function setCurrentAnlage(id){
 }
 
 function getCurrentAnlage(){
-	return sessionStorage.getItem("anlage");
+	var id = sessionStorage.getItem("anlage");
+	if(id == null) return -1;
+	else return id;
 }
 
 function getCurrentAnlageText(){
-	return anlage_name[curr_anlage];	
+	return anlage_name[getCurrentAnlage()];	
 }
 
 // Datenfunktionen
