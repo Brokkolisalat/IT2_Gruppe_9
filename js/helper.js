@@ -48,13 +48,13 @@ function parseData(daten, filter, von_datum, bis_datum){
 	/* Schleife durch sämtliche JSON-Einträge */
 	daten.forEach(function(eintrag, i){
 		/* Nur Einträge in entsprechendem Zeitraum */
-		if(eintrag.datum >= von_datum && eintrag.datum <= bis_datum){
+		//if(eintrag.datum >= von_datum && eintrag.datum <= bis_datum){
 			/* Schleife durch gültige JSON-Keys (Filter) */
 	        for(let f in filter){
 				/* Timestamp, Filtername (z.B. H-Vertikal), Filterwert (z.B. 0)*/
 				result.push([eintrag.datum, filter[f], eintrag.werte[filter[f]]]);
 			}
-		}
+		//}
     });
 	return result;
 }
