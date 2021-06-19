@@ -50,7 +50,7 @@ function showTable(daten, filter) {
 	            }
 	        });
 		
-		var table = d3.select("#list").append("table");
+		var table = d3.select("#grid-container").append("table");
 	    var header = table.append("thead").append("tr");
 	    header
 	            .selectAll("th")
@@ -92,19 +92,20 @@ function showTable(daten, filter) {
 	    //.exit().remove(): Daten löschen, falls es mehr Elemente im HTML als Daten gibt.
 	    list.exit().remove();*/
     }
+	/*
     else{
     
    // d3.select('#valid_filters').text( " Gültige Filter: ");
-    d3.select("#grid-containers").selectAll("ul").data(d3.keys(daten["0"].werte)).enter().append("li")
+    d3.select("#grid-container").selectAll("ul").data(d3.keys(daten["0"].werte)).enter().append("li")
         .text(function (daten) {
             return daten;
         });
-    /*for(i = 0; i < d3.keys(daten["0"].werte).length; i++){
+    for(i = 0; i < d3.keys(daten["0"].werte).length; i++){
     	d3.select("#list").select("ul").enter().append("li")
         .text(d3.keys(daten["0"].werte);
-    }*/
     }
-    
+    }
+    */
 }
 
 
