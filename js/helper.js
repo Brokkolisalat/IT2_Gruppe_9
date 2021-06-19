@@ -42,21 +42,32 @@ function callData(datenEmpfangen,error, filter, von_datum, bis_datum) {
     }
 }
 
-/* Umwandeln der JSON-Daten in Array */
+/* Umwandeln der JSON-Daten in zweidimensionalem Array
+	zeilen[0] -> 1. JSON-Zeile 
+	zeilen[0][0] -> 1. Wert der 1. JSON-Zeile
+	zeilen[1] -> 2. JSON-Zeile
+	zeilen[1][0] -> 1. Wert der 2. JSON-Zeile
+	zeilen[1][1] -> 2. Wert der 2. JSON-Zeile
+	zeilen[0][0][0] Datum
+	zeilen[0][0][1] JSON-Key
+	zeilen[0][0][2] JSON-Wert
+	 */
 function parseData(daten, filter, von_datum, bis_datum){
-	var result = [];
+	var zeilen = [];
 	/* Schleife durch sämtliche JSON-Einträge */
-	daten.forEach(function(eintrag, i){
+	daten.forEach(function(json_zeile, i){
 		/* Nur Einträge in entsprechendem Zeitraum */
 		//if(eintrag.datum >= von_datum && eintrag.datum <= bis_datum){
 			/* Schleife durch gültige JSON-Keys (Filter) */
+			var werte_pro_zeile = [];
 	        for(let f in filter){
 				/* Timestamp, Filtername (z.B. H-Vertikal), Filterwert (z.B. 0)*/
-				result.push([eintrag.datum, filter[f], eintrag.werte[filter[f]]]);
+				werte_pro_zeile.push([json_zeile.datum, filter[f], json_zeile.werte[filter[f]]]);
 			}
+			zeilen.push(werte_pro_zeile);
 		//}
     });
-	return result;
+	return zeilen;
 }
 
 /* ERHALTE GÜLTIGE JSON-KEYS PRO ANLAGEMODUL */
