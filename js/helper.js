@@ -234,7 +234,7 @@ function displayTable(daten) {
     var header = table.append("thead").append("tr");
     header
             .selectAll("th")
-            .data(["Zeitpunkt", "Schlüssel", "Wert"])
+            .data(["Zeitpunkt", "Sensor/Aktor", "Status"])
             .enter()
             .append("th")
             .text(function(d) { return d; });
@@ -256,21 +256,6 @@ function displayTable(daten) {
             .text(function(d) {
                 return d;
             });
-	/*
-    //Rückgabe der d3.selectAll - Methode in variable p speichern.(Alle Kindelemente von content, die p- Elemente sind.) Am Anfang gibt es noch keine.
-    var list = d3.select("#grid-container").selectAll("ul").data(daten);
-    //.enter().append(): Daten hinzufuegen falls es mehr Daten als Elemente im HTML gibt.
-    //geschieht hier für jede Zeile von daten.
-    list.enter().append("li")
-        .text(function (daten) {
-        	var text = "Uhrzeit: " + daten.datum;
-        	for(i = 0; i < filter.length; i++){
-        		text +=", Schlüssel " + i + ": " + filter[i] + ", Wert: " + daten.werte[filter[i]];
-        	}
-            return text;
-        });
-    //.exit().remove(): Daten löschen, falls es mehr Elemente im HTML als Daten gibt.
-    list.exit().remove();*/
     
 }
 
