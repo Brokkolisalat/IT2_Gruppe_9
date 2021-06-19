@@ -60,12 +60,16 @@ function parseData(daten, filter, von_datum, bis_datum){
 		/* Nur Einträge in entsprechendem Zeitraum */
 		//if(eintrag.datum >= von_datum && eintrag.datum <= bis_datum){
 			/* Schleife durch gültige JSON-Keys (Filter) */
+			var value_changed = false;
 			var werte_pro_zeile = [];
 	        for(let f in filter){
 				/* Timestamp, Filtername (z.B. H-Vertikal), Filterwert (z.B. 0)*/
+				if(i > 0 && daten[i-1].werte[filter[f]] != json_zeile.werte[filter[f]]) value_changed = true;
 				werte_pro_zeile.push([json_zeile.datum, filter[f], json_zeile.werte[filter[f]]]);
 			}
-			zeilen.push(werte_pro_zeile);
+			/* NUR ZEILEN MIT VERÄNDERTEN WERTEN WEGSCHREIBEN */
+			if(value_changed)
+				zeilen.push(werte_pro_zeile);
 		//}
     });
 	return zeilen;
