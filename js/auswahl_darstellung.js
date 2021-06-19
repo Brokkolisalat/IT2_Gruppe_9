@@ -5,6 +5,7 @@ $(function () {
 
 function onLoad(){
 	var anlage = getCurrentAnlageText();
+	d3.select("title").text('Auswahl Visualisierung für ' + anlage);
 	d3.select("#head_text").text('Auswahl Visualisierung für ' + anlage);
 }
 
