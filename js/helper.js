@@ -1,21 +1,19 @@
 /* VERFÜGBARE ANLAGEMODULE */
 var anlage_name = ["Hochregallager", "Bearbeitungsstation", "Vakuum-Sauggreifer", "Sortierstrecke", "Umsetzer", "Ampel"];
 
-/* AKTUELL GLOBAL AUSGEWÄHLTES ANLAGEMODUL */
-var curr_anlage = -1;
 
 function init(){
-	curr_anlage = -1;
+	
 }
 
 /* SETZE AUSGEWÄHLTES ANLAGEMODUL GLOBAL */
 function setCurrentAnlage(id){
 	if(id >= anlage_name.length) return;
-	curr_anlage = id;
+	Window.sessionStorage.setItem("anlage", id);
 }
 
 function getCurrentAnlage(){
-	return curr_anlage;
+	return Window.sessionStorage.getItem("anlage");
 }
 
 function getCurrentAnlageText(){
