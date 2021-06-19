@@ -22,107 +22,41 @@ function getCurrentAnlageText(){
 	return anlage_name[getCurrentAnlage()];	
 }
 
-// Datenfunktionen
-function showTable(daten, filter) {
-	// Anzeige des Filters
-	//let filter_element = d3.select('#filter');
-	var valid_filter = true;
-	//var filter_text = "Filter: ";
-	for(let f of filter){
-		valid_filter = isValidFilter(f, daten);
-		if(!valid_filter) {
-		//filter_text += f + "; ";
-		//else{
-		//filter_text = "Filter ungültig: " + f;
-		console.log("Filter ungültig: " + f);
-		break;
-		}
-	}
-	//filter_element.text(filter_text);
-	if(valid_filter){
-		
-		var myArray = [];
-	        daten.forEach(function(d, i){
-	            // now we add another data object value, a calculated value.
-	            // here we are making strings into numbers using type coercion
-	            for(let f in filter){
-	            	myArray.push([d.datum, filter[f], d.werte[filter[f]]]);
-	            }
-	        });
-		
-		var table = d3.select("#grid-container").append("table");
-	    var header = table.append("thead").append("tr");
-	    header
-	            .selectAll("th")
-	            .data(["Zeitpunkt", "Schlüssel", "Wert"])
-	            .enter()
-	            .append("th")
-	            .text(function(d) { return d; });
-	    var tablebody = table.append("tbody");
-	    rows = tablebody
-	            .selectAll("tr")
-	            .data(myArray)
-	            .enter()
-	            .append("tr");
-	    // We built the rows using the nested array - now each row has its own array.
-	    cells = rows.selectAll("td")
-	        // each row has data associated; we get it and enter it for the cells.
-	            .data(function(d) {
-	                console.log(d);
-	                return d;
-	            })
-	            .enter()
-	            .append("td")
-	            .text(function(d) {
-	                return d;
-	            });
-		
-	    /*//Rückgabe der d3.selectAll - Methode in variable p speichern.(Alle Kindelemente von content, die p- Elemente sind.) Am Anfang gibt es noch keine.
-	    var list = d3.select("#grid-container").selectAll("ul").data(daten);
-	    //.enter().append(): Daten hinzufuegen falls es mehr Daten als Elemente im HTML gibt.
-	    //geschieht hier für jede Zeile von daten.
-	    list.enter().append("li")
-	        .text(function (daten) {
-	        	var text = "Uhrzeit: " + daten.datum;
-	        	for(i = 0; i < filter.length; i++){
-	        		text +=", Schlüssel " + i + ": " + filter[i] + ", Wert: " + daten.werte[filter[i]];
-	        	}
-	            return text;
-	        });
-	    //.exit().remove(): Daten löschen, falls es mehr Elemente im HTML als Daten gibt.
-	    list.exit().remove();*/
-    }
-	/*
-    else{
-    
-   // d3.select('#valid_filters').text( " Gültige Filter: ");
-    d3.select("#grid-container").selectAll("ul").data(d3.keys(daten["0"].werte)).enter().append("li")
-        .text(function (daten) {
-            return daten;
-        });
-    for(i = 0; i < d3.keys(daten["0"].werte).length; i++){
-    	d3.select("#list").select("ul").enter().append("li")
-        .text(d3.keys(daten["0"].werte);
-    }
-    }
-    */
-}
-
-
-function callData(datenEmpfangen,error, filter) {
-    if (error) {
-        console.log(error);
-    } else {
-        showTable(datenEmpfangen, filter);
-    }
-}
-
-/* STELLE DATEN AUF BASIS DER GÜLTIGEN JSON-KEYS ZUR ANLAGE DAR */
-function getData(anlage) {
+/* DATENFUNKTIONEN */
+/* Einstiegspunkt für JSON-Daten */
+function getData(anlage, von_datum, bis_datum) {
 	var filter = getFilterByAnlage(anlage);
     d3.json("https://it2wi1.if-lab.de/rest/ft_ablauf").then(function (data, error) {
-        callData(data, error, filter)
+        return callData(data, error, filter, von_datum, bis_datum)
     });
+	return null;
+}
+
+/* D3-Aufruffunktion */
+function callData(datenEmpfangen,error, filter, von_datum, bis_datum) {
+    if (error) {
+        console.log(error);
+		return null;
+    } else {
+        return parseData(datenEmpfangen, filter, von_datum, bis_datum);
+    }
+}
+
+/* Umwandeln der JSON-Daten in Array */
+function parseData(daten, filter, von_datum, bis_datum){
+	var result = [];
+	/* Schleife durch sämtliche JSON-Einträge */
+	daten.forEach(function(eintrag, i){
+		/* Nur Einträge in entsprechendem Zeitraum */
+		if(eintrag.datum >= von_datum && eintrag.datum <= bis_datum){
+			/* Schleife durch gültige JSON-Keys (Filter) */
+	        for(let f in filter){
+				/* Timestamp, Filtername (z.B. H-Vertikal), Filterwert (z.B. 0)*/
+				result.push([eintrag.datum, filter[f], eintrag.werte[filter[f]]]);
+			}
+		}
+    });
+	return result;
 }
 
 /* ERHALTE GÜLTIGE JSON-KEYS PRO ANLAGEMODUL */
@@ -218,3 +152,89 @@ function processInput()
     l = unescape(temp[1]);
     getData(l);
 } */
+
+/*
+function showTable(daten, filter) {
+	// Anzeige des Filters
+	//let filter_element = d3.select('#filter');
+	var valid_filter = true;
+	//var filter_text = "Filter: ";
+	for(let f of filter){
+		valid_filter = isValidFilter(f, daten);
+		if(!valid_filter) {
+		//filter_text += f + "; ";
+		//else{
+		//filter_text = "Filter ungültig: " + f;
+		console.log("Filter ungültig: " + f);
+		break;
+		}
+	}
+	//filter_element.text(filter_text);
+	if(valid_filter){
+		
+		var myArray = [];
+	        daten.forEach(function(d, i){
+	            // now we add another data object value, a calculated value.
+	            // here we are making strings into numbers using type coercion
+	            for(let f in filter){
+	            	myArray.push([d.datum, filter[f], d.werte[filter[f]]]);
+	            }
+	        });
+		
+		var table = d3.select("#grid-container").append("table");
+	    var header = table.append("thead").append("tr");
+	    header
+	            .selectAll("th")
+	            .data(["Zeitpunkt", "Schlüssel", "Wert"])
+	            .enter()
+	            .append("th")
+	            .text(function(d) { return d; });
+	    var tablebody = table.append("tbody");
+	    rows = tablebody
+	            .selectAll("tr")
+	            .data(myArray)
+	            .enter()
+	            .append("tr");
+	    // We built the rows using the nested array - now each row has its own array.
+	    cells = rows.selectAll("td")
+	        // each row has data associated; we get it and enter it for the cells.
+	            .data(function(d) {
+	                console.log(d);
+	                return d;
+	            })
+	            .enter()
+	            .append("td")
+	            .text(function(d) {
+	                return d;
+	            });
+		
+	    //Rückgabe der d3.selectAll - Methode in variable p speichern.(Alle Kindelemente von content, die p- Elemente sind.) Am Anfang gibt es noch keine.
+	    var list = d3.select("#grid-container").selectAll("ul").data(daten);
+	    //.enter().append(): Daten hinzufuegen falls es mehr Daten als Elemente im HTML gibt.
+	    //geschieht hier für jede Zeile von daten.
+	    list.enter().append("li")
+	        .text(function (daten) {
+	        	var text = "Uhrzeit: " + daten.datum;
+	        	for(i = 0; i < filter.length; i++){
+	        		text +=", Schlüssel " + i + ": " + filter[i] + ", Wert: " + daten.werte[filter[i]];
+	        	}
+	            return text;
+	        });
+	    //.exit().remove(): Daten löschen, falls es mehr Elemente im HTML als Daten gibt.
+	    list.exit().remove();
+    }
+	
+    else{
+    
+   // d3.select('#valid_filters').text( " Gültige Filter: ");
+    d3.select("#grid-container").selectAll("ul").data(d3.keys(daten["0"].werte)).enter().append("li")
+        .text(function (daten) {
+            return daten;
+        });
+    for(i = 0; i < d3.keys(daten["0"].werte).length; i++){
+    	d3.select("#list").select("ul").enter().append("li")
+        .text(d3.keys(daten["0"].werte);
+    }
+    }
+    
+}*/
