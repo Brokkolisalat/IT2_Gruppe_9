@@ -9,11 +9,11 @@ function init(){
 /* SETZE AUSGEWÄHLTES ANLAGEMODUL GLOBAL */
 function setCurrentAnlage(id){
 	if(id >= anlage_name.length) return;
-	Window.sessionStorage.setItem("anlage", id);
+	sessionStorage.setItem("anlage", id);
 }
 
 function getCurrentAnlage(){
-	return Window.sessionStorage.getItem("anlage");
+	return sessionStorage.getItem("anlage");
 }
 
 function getCurrentAnlageText(){
