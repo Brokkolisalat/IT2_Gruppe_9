@@ -28,7 +28,7 @@ function visualizeWege(){
 
 
 /* FUNKTIONEN FÜR DARSTELLUNGSFORMEN DER DATEN */
-function displayDiagram(input){
+function displayDiagram(input = []){
 	/* siehe https://www.d3-graph-gallery.com/graph/histogram_basic.html */
 	// set the dimensions and margins of the graph
 	var margin = {top: 10, right: 30, bottom: 30, left: 40},
