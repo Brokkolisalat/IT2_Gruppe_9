@@ -24,22 +24,23 @@ function getCurrentAnlageText(){
 
 /* DATENFUNKTIONEN */
 /* Einstiegspunkt für JSON-Daten */
-function getData(anlage, von_datum, bis_datum) {
+function getData(anlage, von_datum, bis_datum, caller) {
 	var filter = getFilterByAnlage(anlage);
-	var result = [];
     d3.json("https://it2wi1.if-lab.de/rest/ft_ablauf").then(function (data, error) {
-        result = callData(data, error, filter, von_datum, bis_datum);
+        callData(data, error, filter, von_datum, bis_datum, caller);
     });
-	return result;
 }
 
 /* D3-Aufruffunktion */
-function callData(datenEmpfangen,error, filter, von_datum, bis_datum) {
+function callData(datenEmpfangen,error, filter, von_datum, bis_datum, caller) {
     if (error) {
         console.log(error);
 		return null;
     } else {
-        return parseData(datenEmpfangen, filter, von_datum, bis_datum);
+        var result = parseData(datenEmpfangen, filter, von_datum, bis_datum);
+		if(caller == "history"){
+			displayHistory(result);
+		}
     }
 }
 
@@ -64,7 +65,7 @@ function parseData(daten, filter, von_datum, bis_datum){
 			var werte_pro_zeile = [];
 	        for(let f in filter){
 				/* Timestamp, Filtername (z.B. H-Vertikal), Filterwert (z.B. 0)*/
-				if(i > 0 && daten[i-1].werte[filter[f]] != json_zeile.werte[filter[f]]) value_changed = true;
+				if(i == 0 || daten[i-1].werte[filter[f]] != json_zeile.werte[filter[f]]) value_changed = true;
 				werte_pro_zeile.push([json_zeile.datum, filter[f], json_zeile.werte[filter[f]]]);
 			}
 			/* NUR ZEILEN MIT VERÄNDERTEN WERTEN WEGSCHREIBEN */
