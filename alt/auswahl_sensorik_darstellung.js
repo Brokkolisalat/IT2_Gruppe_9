@@ -9,3 +9,6 @@ document.getElementById("diagram").onclick = function (){
 document.getElementById("history").onclick = function (){
     location.href = 'history.html';
 }
+document.getElementById("wege").onclick = function (){
+    location.href = 'wege.html';
+}

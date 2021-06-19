@@ -7,7 +7,7 @@ form.addEventListener("submit", function (event) {
     var password = formData.get('password');
     console.log(username, password);
     if (username === 'admin' && password === 'admin') {
-        location.href = 'Front_page.html';
+        location.href = 'auswahl_anlage.html';
     } else {
         alert("Benutzername oder Passwort sind falsch!");
     }
