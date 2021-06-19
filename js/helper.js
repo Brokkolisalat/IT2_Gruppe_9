@@ -1,13 +1,14 @@
-// Hier sollen die Anlagetexte und Nummern zentral gemapped werden
-
+/* VERFÜGBARE ANLAGEMODULE */
 var anlage_name = ["Hochregallager", "Bearbeitungsstation", "Vakuum-Sauggreifer", "Sortierstrecke", "Umsetzer", "Ampel"];
 
+/* AKTUELL GLOBAL AUSGEWÄHLTES ANLAGEMODUL */
 var curr_anlage = -1;
 
 function init(){
 	curr_anlage = -1;
 }
 
+/* SETZE AUSGEWÄHLTES ANLAGEMODUL GLOBAL */
 function setCurrentAnlage(id){
 	if(id >= anlage_name.length) return;
 	curr_anlage = id;
@@ -17,7 +18,7 @@ function getCurrentAnlage(){
 	return curr_anlage;
 }
 
-function getCurrAnlageText(){
+function getCurrentAnlageText(){
 	return anlage_name[curr_anlage];	
 }
 
@@ -105,6 +106,7 @@ function showTable(daten, filter) {
     
 }
 
+
 function callData(datenEmpfangen,error, filter) {
     if (error) {
         console.log(error);
@@ -113,7 +115,7 @@ function callData(datenEmpfangen,error, filter) {
     }
 }
 
-// Einstiegspunkt
+/* STELLE DATEN AUF BASIS DER GÜLTIGEN JSON-KEYS ZUR ANLAGE DAR */
 function getData(anlage) {
 	var filter = getFilterByAnlage(anlage);
     d3.json("https://it2wi1.if-lab.de/rest/ft_ablauf").then(function (data, error) {
@@ -121,6 +123,7 @@ function getData(anlage) {
     });
 }
 
+/* ERHALTE GÜLTIGE JSON-KEYS PRO ANLAGEMODUL */
 function getFilterByAnlage(anlage){
 	let filter = [];
 	switch (anlage) {
@@ -186,6 +189,7 @@ function getFilterByAnlage(anlage){
 	return filter;
 }
 
+/* PRÜFE ANGEGEBENEN FILTER AUF GÜLTIGKEIT (JSON->Werte->Key) */
 function isValidFilter(filter, daten){
 	var valid_filters = d3.keys(daten["0"].werte);
 	for (i = 0; i < valid_filters.length; i++) {
@@ -194,7 +198,16 @@ function isValidFilter(filter, daten){
 	return false;
 }
 
-// Parameter einlesen
+/* LEGT ANGEGEBENE ANLAGE ÜBERHAUPT WEGE ZURÜCK? */
+function hasWegeOption(anlage){
+	return anlage == anlage_name[0] 
+		|| anlage == anlage_name[1]
+		|| anlage == anlage_name[2]
+		|| anlage == anlage_name[3];
+}
+
+
+/* Parameter einlesen
 function processInput()
 {
     var parameters = location.search.substring(1).split("&");
@@ -202,4 +215,4 @@ function processInput()
     var temp = parameters[0].split("=");
     l = unescape(temp[1]);
     getData(l);
-}
+} */
