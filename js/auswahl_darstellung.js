@@ -3,6 +3,11 @@ $(function () {
     $("#footer").load("footer.html");
 });
 
+function onLoad(){
+	var anlage = getCurrentAnlageText();
+	d3.select("#head_text").text('Auswahl Visualisierung für ' + anlage);
+}
+
 document.getElementById("diagram").onclick = function (){
     location.href = 'diagram.html';
 }
