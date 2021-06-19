@@ -26,9 +26,11 @@ function getCurrentAnlageText(){
 /* Einstiegspunkt für JSON-Daten */
 function getData(anlage, von_datum, bis_datum) {
 	var filter = getFilterByAnlage(anlage);
+	var data = [];
     d3.json("https://it2wi1.if-lab.de/rest/ft_ablauf").then(function (data, error) {
-        return callData(data, error, filter, von_datum, bis_datum)
+        data = callData(data, error, filter, von_datum, bis_datum)
     });
+	return data;
 }
 
 /* D3-Aufruffunktion */
