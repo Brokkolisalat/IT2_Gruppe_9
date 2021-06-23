@@ -1,16 +1,20 @@
-svg {
+/*svg {
     height: 3em;
     width: 3em;
-}
+}*/
 .logout{
     float: left;
     margin-left: 50px;
     Padding: 50px;
+    height: 3em;
+    width: 3em;
 }
 .support{
     float: right;
     margin-right: 50px;
     Padding: 50px;
+    height: 3em;
+    width: 3em;
 }
 path {
     fill:#314151;
