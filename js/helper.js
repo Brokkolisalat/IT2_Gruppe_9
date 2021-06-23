@@ -36,13 +36,14 @@ function callData(datenEmpfangen,error, filter, von_datum, bis_datum, caller) {
     if (error) {
         console.log(error);
 		return null;
-    } else {    
-		if(caller == "diagram")
+    } else {    	
+		if(caller == "diagram") {
 			displayDiagram(parseData(datenEmpfangen, filter, von_datum, bis_datum));
+		}
 		else if(caller == "history")
 			displayTable(parseData(datenEmpfangen, filter, von_datum, bis_datum));
 		else if(caller == "wege")
-			var x = false;
+			displayDistance(parseData(datenEmpfangen, filter, von_datum, bis_datum));		
     }
 }
 
@@ -163,6 +164,22 @@ function hasWegeOption(anlage){
 
 /* FUNKTIONEN FÜR DARSTELLUNGSFORMEN DER DATEN */
 function displayDiagram(input){
+	var current_anlage = getCurrentAnlageText();
+	console.log(current_anlage); //print
+	/*aggregierte Daten in arrays packen
+	statiChanges[0] -> 1. Sensor
+	statiChanges[0][0] -> Name des 1. Sensors
+	statiChanges[0][1] -> Stati-Änderungen des 1. Sensors
+	statiChanges[1] -> 2. Sensor
+	statiChanges[1][0] -> Name des 2. Sensors
+	statiChanges[1][1] -> Stati-Änderungen des 2. Sensors
+	...
+	*/
+	var statiChanges = countStatusChangeWrapper(input);
+	for(k = 0; k < statiChanges.length; k++) { //test print
+		console.log(statiChanges[k][0]+": "+statiChanges[k][1]);
+	}
+
 	/* siehe https://www.d3-graph-gallery.com/graph/histogram_basic.html */
 	// set the dimensions and margins of the graph
 	var margin = {top: 10, right: 30, bottom: 30, left: 40},
@@ -256,7 +273,144 @@ function displayTable(daten) {
             .text(function(d) {
                 return d;
             });
-    
+}
+
+function displayDistance(input) {
+	var current_anlage = getCurrentAnlageText();
+	console.log(current_anlage); //print
+	/*aggregierte Daten in arrays packen
+	cumulativeDistance[0] -> 1. Sensor falls vorhanden
+	cumulativeDistance[0][0] -> Name des 1. Sensors
+	cumulativeDistance[0][1] -> kumulierte Wegstrecke des 1. Sensors
+	cumulativeDistance[1] -> 2. Sensor falls vorhanden
+	cumulativeDistance[1][0] -> Name des 2. Sensors
+	cumulativeDistance[1][1] -> kumulierte Wegstrecke des 2. Sensors
+	...
+	*/
+	var cumulativeDistance = cumulativeDistanceWrapper(input);
+	for(k = 0; k < cumulativeDistance.length; k++) { //test print
+		console.log(cumulativeDistance[k][0]+": "+cumulativeDistance[k][1]);
+	}
+}
+
+//Wegstrecke kumulieren
+function cumulativeDistance(zeilen, index) {
+	var sumDis = 0;
+	for (i = 0; i < zeilen.length; i++) {
+		sumDis = sumDis + Number(zeilen[i][index][2]);
+	}
+	return sumDis;
+}
+
+function cumulativeDistanceWrapper(zeilen) {
+	var current_anlage = getCurrentAnlageText();
+	var retArray = [];
+	switch (current_anlage) {
+		case "Hochregallager": 
+			for(j = 0; j < 2; j++) {
+				var retArrayInArray = [];
+				retArrayInArray.push(zeilen[0][j][1]); //sensor name
+				retArrayInArray.push(cumulativeDistance(zeilen,j)); //changes
+				retArray.push(retArrayInArray);
+			}
+			break;
+		case "Bearbeitungsstation":
+			break;
+		case "Vakuum-Sauggreifer": 
+			for(j = 0; j < 3; j++) {
+				var retArrayInArray = [];
+				retArrayInArray.push(zeilen[0][j][1]); //sensor name
+				retArrayInArray.push(cumulativeDistance(zeilen,j)); //changes
+				retArray.push(retArrayInArray);
+			}
+			break;
+		case "Sortierstrecke": 
+			break;
+		case "Umsetzer":
+			break;
+		case "Ampel":
+			break;
+		default:
+			break;
+	}
+	return retArray;
+}
+
+//Statiänderungen checken
+function checkStatusChange(firstValue,secondValue) {
+	if(firstValue != secondValue) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+//Statiänderungen zählen
+function countStatusChange(zeilen, index) {
+	var sum = 0;
+	if(zeilen.length == 1) return 0; //can not count changes if there is only one value
+	for (i = 1; i < zeilen.length; i++) {
+		sum = sum + checkStatusChange(zeilen[i-1][index][2],zeilen[i][index][2]);
+	}
+	return sum;
+}
+
+function countStatusChangeWrapper(zeilen) {
+	var current_anlage = getCurrentAnlageText();
+	var retArray = [];
+	switch (current_anlage) {
+		case "Hochregallager": 
+			for(j = 2; j < zeilen[0].length; j++) {
+				var retArrayInArray = [];
+				retArrayInArray.push(zeilen[0][j][1]); //sensor name
+				retArrayInArray.push(countStatusChange(zeilen,j)); //changes
+				retArray.push(retArrayInArray);
+			}
+			break;
+		case "Bearbeitungsstation":
+			for(j = 0; j < zeilen[0].length; j++) {
+				var retArrayInArray = [];
+				retArrayInArray.push(zeilen[0][j][1]); //sensor name
+				retArrayInArray.push(countStatusChange(zeilen,j)); //changes
+				retArray.push(retArrayInArray); 
+			}
+			break;
+		case "Vakuum-Sauggreifer": 
+			for(j = 3; j < zeilen[0].length; j++) {
+				var retArrayInArray = [];
+				retArrayInArray.push(zeilen[0][j][1]); //sensor name
+				retArrayInArray.push(countStatusChange(zeilen,j)); //changes
+				retArray.push(retArrayInArray);
+			}
+			break;
+		case "Sortierstrecke": 
+			for(j = 0; j < zeilen[0].length; j++) {
+				var retArrayInArray = [];
+				retArrayInArray.push(zeilen[0][j][1]); //sensor name
+				retArrayInArray.push(countStatusChange(zeilen,j)); //changes
+				retArray.push(retArrayInArray);
+			}
+			break;
+		case "Umsetzer":
+			for(j = 0; j < zeilen[0].length; j++) {
+				var retArrayInArray = [];
+				retArrayInArray.push(zeilen[0][j][1]); //sensor name
+				retArrayInArray.push(countStatusChange(zeilen,j)); //changes
+				retArray.push(retArrayInArray);
+			}
+			break;
+		case "Ampel":
+			for(j = 0; j < zeilen[0].length; j++) {
+				var retArrayInArray = [];
+				retArrayInArray.push(zeilen[0][j][1]); //sensor name
+				retArrayInArray.push(countStatusChange(zeilen,j)); //changes
+				retArray.push(retArrayInArray);
+			}
+			break;
+		default:
+			break;
+	}
+	return retArray;
 }
 
 
