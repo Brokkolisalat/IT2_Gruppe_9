@@ -283,7 +283,7 @@ function displayDistance(input) {
 
 	var builtString =""
 	for(k = 0; k < cumulativeDistance.length; k++) {
-		builtString = builtString + cumulativeDistance[k][0]+": "+cumulativeDistance[k][1]+" mm;"+"\n";
+		builtString = builtString + cumulativeDistance[k][0]+": "+cumulativeDistance[k][1]+" Umdrehungen;"+"\n"; //"Umdreuhungen" as metric according to Sascha Oks
 	}
 	document.getElementById("cDistance").innerHTML = builtString;
 }
@@ -333,7 +333,7 @@ function cumulativeDistanceWrapper(zeilen) {
 
 //Statiänderungen checken
 function checkStatusChange(firstValue,secondValue) {
-	if(firstValue != secondValue) {
+	if(firstValue == " false" && secondValue == " true") { //space before value in String, according to Sascha Oks count only false --> true
 		return 1;
 	} else {
 		return 0;
