@@ -20,12 +20,6 @@ function visualizeHistory(){
 
 function visualizeWege(){
 	var anlage = getCurrentAnlageText();
-	d3.select("#head_text").text('Zurückgelegte Wegstrecke ' + anlage);
-	getData(anlage, dummy_von, dummy_bis, "wege");
-}
-
-function showImage() {
-	var anlage = getCurrentAnlageText();
 	switch (anlage) {
 		case "Hochregallager": 
 			$("#id1").attr("src","../bilder/Hochregallager.png");
@@ -47,4 +41,6 @@ function showImage() {
 		default:
 			break;
 	}
+	d3.select("#head_text").text('Zurückgelegte Wegstrecke ' + anlage);
+	getData(anlage, dummy_von, dummy_bis, "wege");
 }
