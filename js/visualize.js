@@ -23,3 +23,28 @@ function visualizeWege(){
 	d3.select("#head_text").text('Zurückgelegte Wegstrecke ' + anlage);
 	getData(anlage, dummy_von, dummy_bis, "wege");
 }
+
+function showImage() {
+	var anlage = getCurrentAnlageText();
+	switch (anlage) {
+		case "Hochregallager": 
+			$("#id1").attr("src","../bilder/Hochregallager.png");
+			break;
+		case "Bearbeitungsstation":
+			$("#id1").attr("src","../bilder/Bearbeitungsstation.png");
+			break;
+		case "Vakuum-Sauggreifer":
+			$("#id1").attr("src","../bilder/Vakuum-Sauggreifer.png");
+			break;
+		case "Sortierstrecke": 
+			$("#id1").attr("src","../bilder/Sortierstrecke.png");
+			break;
+		case "Umsetzer":
+			$("#id1").attr("src","../bilder/Umsetzer.png");
+			break;
+		case "Ampel":
+			break;
+		default:
+			break;
+	}
+}
