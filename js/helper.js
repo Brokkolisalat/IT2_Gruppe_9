@@ -280,6 +280,12 @@ function displayDistance(input) {
 	for(k = 0; k < cumulativeDistance.length; k++) { //test print
 		console.log(cumulativeDistance[k][0]+": "+cumulativeDistance[k][1]);
 	}
+
+	var builtString =""
+	for(k = 0; k < cumulativeDistance.length; k++) {
+		builtString = builtString + cumulativeDistance[k][0]+": "+cumulativeDistance[k][1]+" mm;"+"\n";
+	}
+	document.getElementById("cDistance").innerHTML = builtString;
 }
 
 //Wegstrecke kumulieren
