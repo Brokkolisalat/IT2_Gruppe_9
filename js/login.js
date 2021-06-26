@@ -11,4 +11,7 @@ form.addEventListener("submit", function (event) {
     } else {
         alert("Benutzername oder Passwort sind falsch!");
     }
-});
+}
+);
+document.getElementById("no-access").onclick = function (){
+    location.href = 'support.html'};
