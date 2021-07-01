@@ -233,6 +233,48 @@ function displayDiagram(input){
     	.attr("width", x.bandwidth())
     	.attr("height", function(d) { return height - y(d.value); })
     	.attr("fill", "#69b3a2")
+
+	//table for Sascha Oks
+		var table = d3.select("#table").append("table")
+					.style("border-collapse", "collapse")
+					.style("border","2px black solid");
+		var header = table.append("thead").append("tr");
+		header
+  			.selectAll("th")
+  			.data(["Sensor/Aktuator", "Statiänderungen"])
+  			.enter()
+  			.append("th")
+  			.text(function(d) { return d; })
+  			.style("border", "1px black solid")
+  			.style("padding", "5px")
+  			.style("background-color", "lightgray")
+  			.style("font-weight", "bold")
+		var tablebody = table.append("tbody");
+		rows = tablebody
+  			.selectAll("tr")
+  			.data(statiChanges)
+  			.enter()
+  			.append("tr")
+		// We built the rows using the nested array - now each row has its own array.
+		cells = rows.selectAll("td")
+		// each row has data associated; we get it and enter it for the cells.
+  			.data(function(d) {
+	  		console.log(d);
+	  		return d;
+ 			 })
+  			.enter()
+  			.append("td")
+  			.style("border", "1px black solid")
+  			.style("padding", "5px")
+  			.on("mouseover", function() {
+	  			d3.select(this).style("background-color", "powderblue");
+  			})
+  			.on("mouseout", function(){
+	 	 		d3.select(this).style("background-color", "#717e87");
+  			})
+  			.text(function(d) {
+	 		return d;
+  			});
 }
 
 
@@ -285,11 +327,53 @@ function displayDistance(input) {
 		console.log(cumulativeDistance[k][0]+": "+cumulativeDistance[k][1]);
 	}
 
-	var builtString =""
-	for(k = 0; k < cumulativeDistance.length; k++) {
-		builtString = builtString + cumulativeDistance[k][0]+": "+cumulativeDistance[k][1]+" Umdrehungen;"+"\n"; //"Umdreuhungen" as metric according to Sascha Oks
-	}
-	document.getElementById("cDistance").innerHTML = builtString;
+	//var builtString =""
+	//for(k = 0; k < cumulativeDistance.length; k++) {
+		//builtString = builtString + cumulativeDistance[k][0]+": "+cumulativeDistance[k][1]+" Umdrehungen;"+"\n"; //"Umdreuhungen" as metric according to Sascha Oks
+	//}
+	//document.getElementById("cDistance").innerHTML = builtString;
+
+		//table for Sascha Oks
+		var table = d3.select("#table").append("table")
+					.style("border-collapse", "collapse")
+					.style("border","2px black solid");
+		var header = table.append("thead").append("tr");
+		header
+  			.selectAll("th")
+  			.data(["Sensor/Aktuator", "Anzahl der Motorumdrehungen"])
+  			.enter()
+  			.append("th")
+  			.text(function(d) { return d; })
+  			.style("border", "1px black solid")
+  			.style("padding", "5px")
+  			.style("background-color", "lightgray")
+  			.style("font-weight", "bold")
+		var tablebody = table.append("tbody");
+		rows = tablebody
+  			.selectAll("tr")
+  			.data(cumulativeDistance)
+  			.enter()
+  			.append("tr")
+		// We built the rows using the nested array - now each row has its own array.
+		cells = rows.selectAll("td")
+		// each row has data associated; we get it and enter it for the cells.
+  			.data(function(d) {
+	  		console.log(d);
+	  		return d;
+ 			 })
+  			.enter()
+  			.append("td")
+  			.style("border", "1px black solid")
+  			.style("padding", "5px")
+  			.on("mouseover", function() {
+	  			d3.select(this).style("background-color", "powderblue");
+  			})
+  			.on("mouseout", function(){
+	 	 		d3.select(this).style("background-color", "#717e87");
+  			})
+  			.text(function(d) {
+	 		return d;
+  			});
 }
 
 //Wegstrecke kumulieren
