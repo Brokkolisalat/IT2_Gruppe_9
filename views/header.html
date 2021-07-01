@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/header.css">
-</head>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/header.css">
 <body>
-    <ul class="topnav">
-        <li><a class="active" href="auswahl_anlage.html">Home</a></li>
-    </ul>
-</body>
 
+<div class="w3-bar">
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
+    <a onclick="goBack()">
+        <a href="javascript: history.go(-1)">
+            <button class="w3-button"><i class="fa fa-arrow-circle-left"></i></button>
+        </a>
+    </a>
+    <a href="auswahl_anlage.html" class="w3-bar-item w3-display-topmiddle w3-button">Home</a>
+        <div class="w3-dropdown-hover w3-right">
+        <button class="w3-button"><i class="fa fa-caret-down"></i></button>
+        <div class="w3-dropdown-content w3-bar-block w3-border" style="right: 0">
+          <a href="support.html" class="w3-bar-item w3-button">Support</a>
+          <a href="login.html" class="w3-bar-item w3-button">Log Out</a>
+        </div>
+      </div>
+</div>
+
+</body>
 </html>
