@@ -63,7 +63,7 @@ document.getElementById("toPDF").onclick = function (){
 
 	doc.text(10,15,text);
 	
-	doc.fromHTML(document.getElementById("body"),5,5,{
+	doc.fromHTML(document.getElementById("table"),10,10,{
 	});
 	doc.save(text+".pdf");
 }

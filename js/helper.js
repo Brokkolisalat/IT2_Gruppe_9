@@ -247,9 +247,10 @@ function displayDiagram(input){
   			.append("th")
   			.text(function(d) { return d; })
   			.style("border", "1px black solid")
-  			.style("padding", "5px")
+  			//.style("padding", "5px")
   			.style("background-color", "lightgray")
   			.style("font-weight", "bold")
+			.style("text-align", "center");
 		var tablebody = table.append("tbody");
 		rows = tablebody
   			.selectAll("tr")
@@ -266,7 +267,8 @@ function displayDiagram(input){
   			.enter()
   			.append("td")
   			.style("border", "1px black solid")
-  			.style("padding", "5px")
+			.style("text-align", "center")
+  			//.style("padding", "5px")
   			.on("mouseover", function() {
 	  			d3.select(this).style("background-color", "powderblue");
   			})
@@ -338,7 +340,8 @@ function displayDistance(input) {
 		var table = d3.select("#table").append("table")
 					.style("border-collapse", "collapse")
 					.style("border","2px black solid")
-					.style("margin", "auto");
+					.style("margin", "auto")
+					.style("text-align", "center");
 		var header = table.append("thead").append("tr");
 		header
   			.selectAll("th")
@@ -347,9 +350,10 @@ function displayDistance(input) {
   			.append("th")
   			.text(function(d) { return d; })
   			.style("border", "1px black solid")
-  			.style("padding", "5px")
+  			//.style("padding", "5px")
   			.style("background-color", "lightgray")
   			.style("font-weight", "bold")
+			.style("text-align", "center");
 		var tablebody = table.append("tbody");
 		rows = tablebody
   			.selectAll("tr")
@@ -366,7 +370,8 @@ function displayDistance(input) {
   			.enter()
   			.append("td")
   			.style("border", "1px black solid")
-  			.style("padding", "5px")
+			.style("text-align", "center")
+  			//.style("padding", "5px")
   			.on("mouseover", function() {
 	  			d3.select(this).style("background-color", "powderblue");
   			})
@@ -519,7 +524,8 @@ function displayHistoricalChanges(input) {
 	var table = d3.select("#table").append("table")
 				  .style("border-collapse", "collapse")
 				  .style("border","2px black solid")
-				  .style("margin", "auto");
+				  .style("margin", "auto")
+				  .style("text-align", "center");
     var header = table.append("thead").append("tr");
     header
             .selectAll("th")
@@ -528,17 +534,19 @@ function displayHistoricalChanges(input) {
             .append("th")
             .text(function(d) { return d; })
 			.style("border", "1px black solid")
-			.style("padding", "5px")
+			//.style("padding", "1px")
 			.style("background-color", "lightgray")
 			.style("font-weight", "bold")
-			.style("margin", "auto");
+			.style("margin", "auto")
+			.style("text-align", "center");
     var tablebody = table.append("tbody");
     rows = tablebody
             .selectAll("tr")
             .data(myArray)
             .enter()
             .append("tr")
-			.style("margin", "auto");
+			.style("margin", "auto")
+			.style("text-align", "center");
     // We built the rows using the nested array - now each row has its own array.
     cells = rows.selectAll("td")
         // each row has data associated; we get it and enter it for the cells.
@@ -549,7 +557,8 @@ function displayHistoricalChanges(input) {
             .enter()
             .append("td")
 			.style("border", "1px black solid")
-			.style("padding", "5px")
+			.style("text-align", "center")
+			//.style("padding", "1px")
 			.style("margin", "auto")
 			.on("mouseover", function() {
 				d3.select(this).style("background-color", "powderblue");
