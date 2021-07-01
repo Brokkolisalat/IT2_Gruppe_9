@@ -8,12 +8,14 @@ var dummy_bis = "15.05.2019 13:00:00";
 
 function visualizeDiagram(){
 	var anlage = getCurrentAnlageText();
-	d3.select("#head_text").text('Zusammenfassung ' + anlage);
+	d3.select("title").text('Zusammenfassung(Diagramm) ' + anlage);
+	d3.select("#head_text").text('Zusammenfassung(Diagramm) ' + anlage);
 	getData(anlage, dummy_von, dummy_bis, "diagram");
 }
 
 function visualizeHistory(){
 	var anlage = getCurrentAnlageText();
+	d3.select("title").text('Historie ' + anlage);
 	d3.select("#head_text").text('Historie ' + anlage);
 	getData(anlage, dummy_von, dummy_bis, "history");
 }
@@ -41,12 +43,14 @@ function visualizeWege(){
 		default:
 			break;
 	}
+	d3.select("title").text('Zurückgelegte Wegstrecke ' + anlage);
 	d3.select("#head_text").text('Zurückgelegte Wegstrecke ' + anlage);
 	getData(anlage, dummy_von, dummy_bis, "wege");
 }
 
 function visualizeHistoricalChanges(){
 	var anlage = getCurrentAnlageText();
+	d3.select("title").text('Historische Sensoränderungen ' + anlage);
 	d3.select("#head_text").text('Historische Sensoränderungen ' + anlage);
 	getData(anlage, dummy_von, dummy_bis, "historicalChanges");
 }
