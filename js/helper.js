@@ -43,7 +43,9 @@ function callData(datenEmpfangen,error, filter, von_datum, bis_datum, caller) {
 		else if(caller == "history")
 			displayTable(parseData(datenEmpfangen, filter, von_datum, bis_datum));
 		else if(caller == "wege")
-			displayDistance(parseData(datenEmpfangen, filter, von_datum, bis_datum));		
+			displayDistance(parseData(datenEmpfangen, filter, von_datum, bis_datum));
+		else if(caller == "historicalChanges")
+			displayHistoricalChanges(parseData(datenEmpfangen, filter, von_datum, bis_datum));	
     }
 }
 
@@ -165,6 +167,8 @@ function hasWegeOption(anlage){
 /* FUNKTIONEN FÜR DARSTELLUNGSFORMEN DER DATEN */
 function displayDiagram(input){
 	var current_anlage = getCurrentAnlageText();
+	//var builtString = "Zusammenfassung " + current_anlage; //Notlösung für Überschrift
+	//document.getElementById("header").innerHTML = builtString; //Notlösung für Überschrift
 	console.log(current_anlage); //print
 	/*aggregierte Daten in arrays packen
 	statiChanges[0] -> 1. Sensor
@@ -343,7 +347,7 @@ function checkStatusChange(firstValue,secondValue) {
 //Statiänderungen zählen
 function countStatusChange(zeilen, index) {
 	var sum = 0;
-	if(zeilen.length == 1) return 0; //can not count changes if there is only one value
+	//can not count changes if there is only one value
 	for (i = 1; i < zeilen.length; i++) {
 		sum = sum + checkStatusChange(zeilen[i-1][index][2],zeilen[i][index][2]);
 	}
@@ -400,6 +404,131 @@ function countStatusChangeWrapper(zeilen) {
 				retArrayInArray.push(zeilen[0][j][1]); //sensor name
 				retArrayInArray.push(countStatusChange(zeilen,j)); //changes
 				retArray.push(retArrayInArray);
+			}
+			break;
+		default:
+			break;
+	}
+	return retArray;
+}
+
+function displayHistoricalChanges(input) {
+	var myArray_unformated = computeHistoricalChanges(input);
+	var beschriftung = [];
+	beschriftung.push("Zeitpunkt");
+	for(m = 1; m < myArray_unformated[0].length; m=m+2) {
+		beschriftung.push(myArray_unformated[0][m]);
+	}
+
+	var myArray = [];
+	for(m = 0; m < myArray_unformated.length; m++) {
+		var myArrayinArray = [];
+		myArrayinArray.push(myArray_unformated[m][0])
+		for(n = 2; n < myArray_unformated[m].length; n=n+2) {
+			myArrayinArray.push(myArray_unformated[m][n]);
+		}
+		myArray.push(myArrayinArray);
+	}
+	
+	var table = d3.select("#table").append("table")
+				  .style("border-collapse", "collapse")
+				  .style("border","2px black solid");
+    var header = table.append("thead").append("tr");
+    header
+            .selectAll("th")
+            .data(beschriftung)
+            .enter()
+            .append("th")
+            .text(function(d) { return d; })
+			.style("border", "1px black solid")
+			.style("padding", "5px")
+			.style("background-color", "lightgray")
+			.style("font-weight", "bold")
+    var tablebody = table.append("tbody");
+    rows = tablebody
+            .selectAll("tr")
+            .data(myArray)
+            .enter()
+            .append("tr")
+    // We built the rows using the nested array - now each row has its own array.
+    cells = rows.selectAll("td")
+        // each row has data associated; we get it and enter it for the cells.
+            .data(function(d) {
+                console.log(d);
+                return d;
+            })
+            .enter()
+            .append("td")
+			.style("border", "1px black solid")
+			.style("padding", "5px")
+			.on("mouseover", function() {
+				d3.select(this).style("background-color", "powderblue");
+			})
+			.on("mouseout", function(){
+				d3.select(this).style("background-color", "#717e87");
+			})
+            .text(function(d) {
+                return d;
+            });
+}
+
+function computeHistoricalChanges(zeilen) {
+	var current_anlage = getCurrentAnlageText();
+	var retArray = [];
+	switch (current_anlage) {
+		case "Hochregallager":
+			for(i = 0; i < zeilen.length; i++) {
+
+				var retArrayInArray = [];
+				retArrayInArray.push(zeilen[i][0][0]);
+				var slicedZeilen = zeilen.slice(0,i+1);
+				for(j = 0; j < 2; j++) {
+					retArrayInArray.push(zeilen[0][j][1]); //sensor name
+					retArrayInArray.push(cumulativeDistance(slicedZeilen,j)); //changes
+				}
+
+				for(j = 2; j < zeilen[0].length; j++) {
+					retArrayInArray.push(zeilen[0][j][1]); //sensor name
+					retArrayInArray.push(countStatusChange(slicedZeilen,j)); //changes
+				}
+				retArray.push(retArrayInArray);
+				console.log(retArrayInArray);
+				/* Prüfung auf Änderungen nicht mehr notwendig, da "zeilen" bereits nur veränderte Zeilen enthält*/
+			}
+			break;
+		case "Vakuum-Sauggreifer": 
+			for(i = 0; i < zeilen.length; i++) {
+
+				var retArrayInArray = [];
+				retArrayInArray.push(zeilen[i][0][0]);
+				var slicedZeilen = zeilen.slice(0,i+1);
+				for(j = 0; j < 3; j++) {
+					retArrayInArray.push(zeilen[0][j][1]); //sensor name
+					retArrayInArray.push(cumulativeDistance(slicedZeilen,j)); //changes
+				}
+				for(j = 3; j < zeilen[0].length; j++) {
+					retArrayInArray.push(zeilen[0][j][1]); //sensor name
+					retArrayInArray.push(countStatusChange(slicedZeilen,j)); //changes
+				}
+				retArray.push(retArrayInArray);
+				console.log(retArrayInArray);
+			}	
+			break;
+		case "Sortierstrecke":
+		case "Bearbeitungsstation":
+		case "Umsetzer":
+		case "Ampel":
+
+			for(i = 0; i < zeilen.length; i++) {
+				var retArrayInArray = [];
+				retArrayInArray.push(zeilen[i][0][0]);
+				var slicedZeilen = zeilen.slice(0,i+1);
+				for(j = 0; j < zeilen[0].length; j++) {
+					retArrayInArray.push(zeilen[0][j][1]); //sensor name
+					retArrayInArray.push(countStatusChange(slicedZeilen,j)); //changes
+				}
+				retArray.push(retArrayInArray);
+				console.log(retArrayInArray);
 			}
 			break;
 		default:

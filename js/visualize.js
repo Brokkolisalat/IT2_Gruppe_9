@@ -44,3 +44,9 @@ function visualizeWege(){
 	d3.select("#head_text").text('Zurückgelegte Wegstrecke ' + anlage);
 	getData(anlage, dummy_von, dummy_bis, "wege");
 }
+
+function visualizeHistoricalChanges(){
+	var anlage = getCurrentAnlageText();
+	d3.select("#head_text").text('Historische Sensoränderungen ' + anlage);
+	getData(anlage, dummy_von, dummy_bis, "historicalChanges");
+}

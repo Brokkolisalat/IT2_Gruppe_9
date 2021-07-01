@@ -18,3 +18,6 @@ document.getElementById("history").onclick = function (){
 document.getElementById("wege").onclick = function (){
     location.href = 'wege.html';
 }
+document.getElementById("historical_sensorchanges").onclick = function (){
+    location.href = 'historical_sensorchanges.html';
+}
