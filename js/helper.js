@@ -191,7 +191,7 @@ function displayDiagram(input){
 
 	/* siehe https://www.d3-graph-gallery.com/graph/histogram_basic.html */
 	// set the dimensions and margins of the graph
-	var margin = {top: 200, right: 0, bottom: 170, left: 250},
+	var margin = {top: 30, right: 0, bottom: 170, left: 300},
 		width = 1000 - margin.left - margin.right,
     	height = 600 - margin.top - margin.bottom;
 	
@@ -234,10 +234,11 @@ function displayDiagram(input){
     	.attr("height", function(d) { return height - y(d.value); })
     	.attr("fill", "#69b3a2")
 
-	//table for Sascha Oks
+//table for Sascha Oks
 		var table = d3.select("#table").append("table")
 					.style("border-collapse", "collapse")
-					.style("border","2px black solid");
+					.style("border","2px black solid")
+					.style("margin", "auto");
 		var header = table.append("thead").append("tr");
 		header
   			.selectAll("th")
@@ -336,7 +337,8 @@ function displayDistance(input) {
 		//table for Sascha Oks
 		var table = d3.select("#table").append("table")
 					.style("border-collapse", "collapse")
-					.style("border","2px black solid");
+					.style("border","2px black solid")
+					.style("margin", "auto");
 		var header = table.append("thead").append("tr");
 		header
   			.selectAll("th")
@@ -516,7 +518,8 @@ function displayHistoricalChanges(input) {
 	
 	var table = d3.select("#table").append("table")
 				  .style("border-collapse", "collapse")
-				  .style("border","2px black solid");
+				  .style("border","2px black solid")
+				  .style("margin", "auto");
     var header = table.append("thead").append("tr");
     header
             .selectAll("th")
@@ -528,12 +531,14 @@ function displayHistoricalChanges(input) {
 			.style("padding", "5px")
 			.style("background-color", "lightgray")
 			.style("font-weight", "bold")
+			.style("margin", "auto");
     var tablebody = table.append("tbody");
     rows = tablebody
             .selectAll("tr")
             .data(myArray)
             .enter()
             .append("tr")
+			.style("margin", "auto");
     // We built the rows using the nested array - now each row has its own array.
     cells = rows.selectAll("td")
         // each row has data associated; we get it and enter it for the cells.
@@ -545,6 +550,7 @@ function displayHistoricalChanges(input) {
             .append("td")
 			.style("border", "1px black solid")
 			.style("padding", "5px")
+			.style("margin", "auto")
 			.on("mouseover", function() {
 				d3.select(this).style("background-color", "powderblue");
 			})

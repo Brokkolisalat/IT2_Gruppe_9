@@ -50,3 +50,16 @@ function visualizeHistoricalChanges(){
 	d3.select("#head_text").text('Historische Sensoränderungen ' + anlage);
 	getData(anlage, dummy_von, dummy_bis, "historicalChanges");
 }
+
+document.getElementById("toPDF").onclick = function (){
+    var doc = new jsPDF("landscape","pt","a1");
+	var anlage = getCurrentAnlageText();
+	var text = "Daten von " + anlage;
+	//doc.setFontSize(30); 
+
+	doc.text(10,15,text);
+	
+	doc.fromHTML(document.getElementById("body"),5,5,{
+	});
+	doc.save(text+".pdf");
+}
