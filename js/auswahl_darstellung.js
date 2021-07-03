@@ -7,6 +7,9 @@ function onLoad(){
 	var anlage = getCurrentAnlageText();
 	d3.select("title").text('Auswahl Visualisierung für ' + anlage);
 	d3.select("#head_text").text('Auswahl Visualisierung für ' + anlage);
+	if(anlage != 'Hochregallager' && anlage != 'Vakuum-Sauggreifer'){
+		d3.select("#wege").remove();
+	}
 }
 
 document.getElementById("diagram").onclick = function (){
