@@ -24,19 +24,19 @@ function visualizeWege(){
 	var anlage = getCurrentAnlageText();
 	switch (anlage) {
 		case "Hochregallager": 
-			$("#id1").attr("src","../bilder/Hochregallager.png");
+			$("#id1").attr("src","../views/bilder/Hochregallager.png");
 			break;
 		case "Bearbeitungsstation":
-			$("#id1").attr("src","../bilder/Bearbeitungsstation.png");
+			$("#id1").attr("src","../views/bilder/Bearbeitungsstation.png");
 			break;
 		case "Vakuum-Sauggreifer":
-			$("#id1").attr("src","../bilder/Vakuum-Sauggreifer.png");
+			$("#id1").attr("src","../views/bilder/Vakuum-Sauggreifer.png");
 			break;
 		case "Sortierstrecke": 
-			$("#id1").attr("src","../bilder/Sortierstrecke.png");
+			$("#id1").attr("src","../views/bilder/Sortierstrecke.png");
 			break;
 		case "Umsetzer":
-			$("#id1").attr("src","../bilder/Umsetzer.png");
+			$("#id1").attr("src","../views/bilder/Umsetzer.png");
 			break;
 		case "Ampel":
 			break;
