@@ -27,5 +27,4 @@ document.getElementById("infor-sensor-5").onclick = function (){
     location.href = anlage_sensor_loc;
 }
 document.getElementById("infor-sensor-6").onclick = function (){
-    location.href = anlage_sensor_loc;
 }
