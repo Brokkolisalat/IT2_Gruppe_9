@@ -16,21 +16,24 @@
 
 <body onload="visualizeWege()">
     <div id="header"></div>
+    
     <div id="body">
         <!-- partial:index.partial.html -->
         <link href='https://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
+    
         <div class="login">
             <div class="login-header">
                 <h1 id="head_text"></h1>
             </div>
-            <button id="toPDF" class="login-button">Export to PDF</button>
-          
-            <img id="id1" src = "../bilder/Vakuum-Sauggreifer.png" class="center">
+            <button class="bodybutton" id="toPDF" class="login-button">Export to PDF</button>
+        </div>  
+        
+        <div>
+            <img id="id1" src = "../bilder/Vakuum-Sauggreifer.png" class="center" >
+        </div>    
             
-            <div id="table">
-            </div>
-            <p id="cDistance"></p>
-        </div>
+        <div id="table"></div>
+        <p id="cDistance"></p>
     </div>
     
     <!-- partial -->
