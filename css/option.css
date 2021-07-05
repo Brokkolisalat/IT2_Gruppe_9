@@ -34,15 +34,13 @@ body {
 	text-align: center;
 }
 
-button {
+.bodybutton {
 	width: 100%;
-	
 	max-width: 280px;
 	height: 100%;
 	margin-left: auto;
   	margin-right: auto;
 	font-family: 'Ubuntu', sans-serif;
-	margin: 3em 2em;
 	border: 1px solid #314151;
 	border-radius: 10px;
 	background-color: #314151;
@@ -52,6 +50,10 @@ button {
 	cursor: pointer;
 }
 
+.center{	
+	text-align: center;
+	padding: 15px;
+}
 th {
 	text-align: left;
 }
