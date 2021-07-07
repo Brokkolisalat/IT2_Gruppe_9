@@ -54,6 +54,27 @@ body {
 	text-align: center;
 	padding: 15px;
 }
+table { /* Styling der Tabelle */ }
+
+.table-scrollable {
+  width: 100%;
+  overflow-y: auto;
+  margin: 0 0 1em;
+  padding: 15px;
+}
+
+.table-scrollable::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+}
+
+.table-scrollable::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 3px solid #fff;
+  background-color: rgba(0, 0, 0, .3);
+}
+
 th {
 	text-align: left;
 }

@@ -26,12 +26,19 @@
                 <h1 id="head_text"></h1>
             </div>
             <button class="bodybutton" id="toPDF" class="login-button">Export to PDF</button>
-            <div class="grid-container" id="table">
+            <div class="table-scrollable">
+                <table id="table"></table>
+                
             </div>
         </div>
     </div>
     
     <!-- partial -->
+    <script>
+        $(document).ready(function(){
+        $("table").wrap('<div class="table-scrollable"></div>');
+        });
+    </script>        
     <script src="../js/helper.js"></script>
     <script src="../js/visualize.js"></script>
 </body>
