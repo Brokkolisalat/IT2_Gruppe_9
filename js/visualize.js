@@ -7,10 +7,12 @@ var dummy_von = "15.05.2019 12:00:00";
 var dummy_bis = "15.05.2019 13:00:00";
 
 function visualizeDiagram(){
+	
 	var anlage = getCurrentAnlageText();
 	d3.select("title").text('Zusammenfassung(Diagramm) ' + anlage);
 	d3.select("#head_text").text('Zusammenfassung(Diagramm) ' + anlage);
 	getData(anlage, dummy_von, dummy_bis, "diagram");
+
 }
 
 function visualizeHistory(){

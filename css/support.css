@@ -1,7 +1,7 @@
 body {
-    background-color: #717e87;
+    background-color: #717e87;;
     font-family: 'Ubuntu', sans-serif;
-    background-size: 100% 110%;
+    background-size: 100% 100%;
 }
 
 h1,
@@ -16,13 +16,17 @@ a {
 }
 
 .login {
-    margin: 100px;
-    background-color: #717e87;
+    margin-top: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+    
 }
 
 .login-header {
     color: #fff;
     text-align: left;
+    font-size: 100%;
+	margin: auto;
 }
 
 .login-form {
