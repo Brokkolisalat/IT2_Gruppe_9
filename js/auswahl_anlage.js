@@ -1,6 +1,5 @@
 $(function () {
     $("#header").load("header.html");
-    $("#footer").load("footer.html");
 });
 
 var anlage_sensor_loc = "auswahl_darstellung.html";

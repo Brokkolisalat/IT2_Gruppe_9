@@ -1,6 +1,5 @@
 $(function () {
     $("#header").load("header.html");
-    $("#footer").load("footer.html");
 });
 
 var dummy_von = "15.05.2019 12:00:00";
